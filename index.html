@@ -114,6 +114,3894 @@
             cursor: pointer;
             transition: 0.2s;
             font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .subcat-panel:hover { border-color: var(--primary-red); background-color: rgba(225, 29, 72, 0.05); }
+
+        /* QUIZ & INTERAKTIVE ELEMENTE */
+        .quiz-container { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 28px; }
+        .quiz-header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--card-border); }
+        .category-badge { color: var(--primary-red); background: rgba(225, 29, 72, 0.1); padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+        .question-title { font-size: 20px; font-weight: 700; margin-bottom: 25px; }
+
+        .new-badge { background-color: var(--accent-green); color: white; font-size: 11px; padding: 3px 8px; border-radius: 12px; text-transform: uppercase; font-weight: bold; margin-left: 8px; display: inline-block; vertical-align: middle; }
+
+        .option-btn {
+            display: flex; align-items: center; width: 100%; padding: 16px 20px; margin: 10px 0;
+            background-color: #0f172a; border: 2px solid var(--card-border); border-radius: 10px;
+            text-align: left; cursor: pointer; font-size: 15px; font-weight: 600; color: var(--text-main);
+            box-sizing: border-box; transition: border-color 0.2s;
+        }
+
+        .option-btn input[type="checkbox"] { margin-right: 12px; transform: scale(1.3); cursor: pointer; }
+        .option-btn:hover { border-color: var(--accent-yellow); }
+        .option-btn.correct { background-color: rgba(16, 185, 129, 0.15); border-color: var(--accent-green); color: #a7f3d0; }
+        .option-btn.wrong { background-color: rgba(225, 29, 72, 0.15); border-color: var(--primary-red); color: #fecdd3; }
+
+        .sort-list { list-style: none; padding: 0; }
+        .sort-item {
+            padding: 14px 18px; margin: 8px 0; background: #0f172a; border: 2px solid var(--card-border);
+            border-radius: 8px; cursor: grab; font-weight: 600; display: flex; justify-content: space-between; color: var(--text-main);
+        }
+
+        .matching-wrapper { position: relative; margin: 15px 0; }
+        .matching-lines-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
+        .matching-lines-svg line { stroke: var(--primary-red); stroke-width: 3; stroke-dasharray: 6; animation: dash 1s linear infinite; }
+
+        @keyframes dash { to { stroke-dashoffset: -12; } }
+
+        .matching-container { display: flex; justify-content: space-between; gap: 40px; position: relative; z-index: 5; }
+        .matching-column { flex: 1; }
+
+        .match-card {
+            padding: 14px; margin: 10px 0; background: #0f172a; border: 2px solid var(--card-border);
+            border-radius: 8px; text-align: center; cursor: pointer; user-select: none; transition: all 0.2s; font-weight: 600;
+        }
+
+        .match-card:hover { border-color: var(--text-muted); }
+        .match-card.selected { border-color: var(--accent-yellow); background: rgba(245, 158, 11, 0.1); }
+        .match-card.paired { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+
+        .free-match-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; position: relative; z-index: 5; }
+        .free-card { margin: 0; display: flex; align-items: center; justify-content: center; min-height: 55px; }
+
+        .explanation { margin-top: 20px; padding: 16px; background-color: #0f172a; border-left: 4px solid var(--accent-yellow); border-radius: 6px; font-size: 14px; line-height: 1.5; color: var(--text-main); }
+
+        .btn { padding: 12px 24px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 8px; transition: 0.2s; }
+        .btn-secondary { background-color: transparent; color: var(--text-muted); border: 1px solid var(--card-border); }
+        .btn-secondary:hover { background-color: var(--card-border); color: white; }
+        .btn-primary { background-color: var(--primary-red); color: white; }
+        .btn-primary:hover { background-color: var(--primary-red-hover); }
+
+        /* MODAL STYLES */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.8); display: flex; align-items: center; justify-content: center; z-index: 100; }
+        .modal { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 30px; width: 95%; max-width: 650px; max-height: 90vh; overflow-y: auto; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+
+        .admin-nav { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid var(--card-border); padding-bottom: 10px; flex-wrap: wrap; }
+        .admin-nav-btn { background: none; border: none; color: var(--text-muted); font-weight: 700; cursor: pointer; padding: 6px 12px; border-radius: 6px; }
+        .admin-nav-btn.active { background-color: var(--primary-red); color: white; }
+
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; }
+        .form-control { width: 100%; background-color: #0f172a; border: 1px solid var(--card-border); padding: 10px 14px; border-radius: 8px; color: white; font-size: 14px; }
+
+        .item-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+        .item-card { background-color: #0f172a; border: 1px solid var(--card-border); padding: 12px 16px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
+
+        .admin-cat-group { background: #0b1120; border: 1px solid var(--card-border); border-radius: 10px; padding: 15px; margin-bottom: 15px; }
+        .admin-subcat-group { background: #1e293b; border-left: 4px solid var(--primary-red); padding: 10px 15px; margin: 10px 0; border-radius: 0 8px 8px 0; }
+
+        .mc-option-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+        .mc-option-row input[type="text"] { flex: 1; }
+        .mc-option-row label { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--text-muted); cursor: pointer; white-space: nowrap; }
+
+        .unlocked-info { background-color: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); color: #a7f3d0; padding: 12px; border-radius: 8px; margin: 15px 0; font-size: 14px; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <div class="logo-icon"><i class="fa-solid fa-fire"></i></div>
+            <div class="logo-text">
+                <h1>FEUERWEHR <span>LERNAPP</span></h1>
+                <p>Ausbildung & Fragetrainer</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <div class="user-badge">
+                <i class="fa-solid fa-star"></i>
+                <span id="user-score-display">0 XP</span>
+            </div>
+            <button class="icon-btn" onclick="openAdminModal()"><i class="fa-solid fa-user-shield"></i></button>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- DASHBOARD & LERNBEREICH -->
+        <div id="view-dashboard">
+            <div class="rank-card">
+                <div class="rank-header">
+                    <div class="rank-title-group">
+                        <small>Aktueller Dienstgrad</small>
+                        <h2 id="rank-display-title">Feuerwehranwärter</h2>
+                    </div>
+                    <div class="next-rank-badge">
+                        Nächster Rang: <span id="next-rank-title">Feuerwehrmann</span>
+                    </div>
+                </div>
+                <div class="progress-info">
+                    <span>Fortschritt</span>
+                    <span id="rank-progress-text">0 / 100 XP</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="rank-progress-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div id="category-selection-view">
+                    <h4 style="margin-bottom: 15px; color: var(--text-muted); text-transform: uppercase; font-size: 12px;">Hauptkategorie wählen:</h4>
+                    <div class="category-grid" id="category-panels"></div>
+                </div>
+
+                <div id="subcategory-selection-view" class="hidden">
+                    <button class="btn btn-secondary" style="margin-bottom: 20px;" onclick="backToCategories()"><i class="fa-solid fa-arrow-left"></i> Zurück zu den Kategorien</button>
+                    <h3 id="subcat-view-title" style="margin-bottom: 15px;">Unterkategorie wählen</h3>
+                    <div class="subcat-grid" id="subcategory-panels"></div>
+                </div>
+
+                <div id="quiz-interactive-area" class="hidden" style="border-top: 1px solid var(--card-border); padding-top: 25px; margin-top: 10px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;" onclick="backToSubcategories()"><i class="fa-solid fa-arrow-left"></i> Andere Unterkategorie</button>
+                        <span class="category-badge" id="question-category">Kategorie</span>
+                    </div>
+                    <div class="question-title" id="question-text">Frage wird geladen...</div>
+                    <div id="interactive-container"></div>
+                    <div id="explanation-container" class="explanation hidden"></div>
+                    <button id="next-btn" class="btn btn-primary hidden" style="margin-top: 20px;" onclick="loadNextQuestion()">Nächste Frage</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ADMIN MODAL -->
+    <div id="admin-modal" class="modal-overlay hidden">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-user-shield"></i> Administration</h3>
+                <button class="icon-btn" onclick="closeAdminModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div id="admin-login-step">
+                <div class="form-group">
+                    <label>Admin-PIN</label>
+                    <input type="password" id="admin-pin-input" class="form-control" placeholder="PIN: ">
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="verifyAdminPin()">Anmelden</button>
+            </div>
+
+            <div id="admin-panel-step" class="hidden">
+                <div class="admin-nav">
+                    <button class="admin-nav-btn active" onclick="switchAdminTab('questions')">Fragen verwalten</button>
+                    <button class="admin-nav-btn" onclick="switchAdminTab('categories')">Kategorien & Unterkategorien</button>
+                    <button class="admin-nav-btn" onclick="switchAdminTab('ranks')">Ränge & System</button>
+                </div>
+
+                <!-- TAB 1: FRAGEN VERWALTEN -->
+                <div id="admin-tab-questions">
+                    <h4 id="form-heading" style="margin-bottom: 15px;">Neue Frage hinzufügen</h4>
+                    <form id="question-form" onsubmit="saveCustomQuestion(event)">
+                        <input type="hidden" id="edit-question-id" value="">
+                        <div class="form-group">
+                            <label>Fragetyp</label>
+                            <select id="form-type" class="form-control" onchange="updateFormFields()" required>
+                                <option value="mc">Multiple Choice / Single Choice</option>
+                                <option value="tf">Richtig / Falsch</option>
+                                <option value="text">Freitext-Eingabe</option>
+                                <option value="sequence">Reihenfolge sortieren</option>
+                                <option value="matching">Elemente verbinden (2 Spalten)</option>
+                                <option value="free_matching">Freies Verbinden (Matrix / Durcheinander)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Hauptkategorie</label>
+                            <select id="form-category" class="form-control" onchange="updateSubcatDropdown()" required></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Unterkategorie</label>
+                            <select id="form-subcategory" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Benötigter Gesamtrang zum Freischalten</label>
+                            <select id="form-rank" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Erforderliche Punkte IN DIESER KATEGORIE</label>
+                            <input type="number" id="form-cat-points" class="form-control" value="0" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Fragetext</label>
+                            <input type="text" id="form-question" class="form-control" required>
+                        </div>
+
+                        <div id="type-fields-container"></div>
+
+                        <div class="form-group">
+                            <label>Erklärung / FwDV-Referenz (Optional)</label>
+                            <textarea id="form-explanation" class="form-control" rows="3"></textarea>
+                        </div>
+                        <div style="display:flex; gap:10px;">
+                            <button type="submit" class="btn btn-primary" id="save-btn">Frage Speichern</button>
+                            <button type="button" class="btn btn-secondary hidden" id="cancel-edit-btn" onclick="resetQuestionForm()">Abbrechen</button>
+                        </div>
+                    </form>
+
+                    <hr style="border-color: var(--card-border); margin: 25px 0;">
+                    <h4 style="margin-bottom: 15px;">Sortierte Fragenübersicht (<span id="custom-count">0</span>)</h4>
+                    <div id="custom-questions-list"></div>
+                </div>
+
+                <!-- TAB 2: KATEGORIEN & UNTERKATEGORIEN -->
+                <div id="admin-tab-categories" class="hidden">
+                    <form onsubmit="addCategory(event)" class="form-group">
+                        <label>Neue Hauptkategorie hinzufügen</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="new-category-name" class="form-control" placeholder="z. B. Ausrüstung" required>
+                            <button type="submit" class="btn btn-primary">Hinzufügen</button>
+                        </div>
+                    </form>
+
+                    <hr style="border-color: var(--card-border); margin: 20px 0;">
+
+                    <form onsubmit="addSubcategory(event)" class="form-group">
+                        <label>Unterkategorie zu Hauptkategorie hinzufügen</label>
+                        <select id="subcat-main-select" class="form-control" style="margin-bottom: 8px;"></select>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="new-subcat-name" class="form-control" placeholder="z. B. Wassertrupp" required>
+                            <button type="submit" class="btn btn-primary">Anlegen</button>
+                        </div>
+                    </form>
+
+                    <hr style="border-color: var(--card-border); margin: 20px 0;">
+                    <div id="category-list" class="item-list"></div>
+                </div>
+
+                <!-- TAB 3: RÄNGE & SYSTEM -->
+                <div id="admin-tab-ranks" class="hidden">
+                    <form onsubmit="addRank(event)" class="form-group">
+                        <label>Neuen Rang hinzufügen</label>
+                        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                            <input type="text" id="new-rank-name" class="form-control" placeholder="Rang-Name" required>
+                            <input type="number" id="new-rank-points" class="form-control" placeholder="XP" required style="width: 120px;">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Rang Erstellen</button>
+                    </form>
+                    <hr style="border-color: var(--card-border); margin: 20px 0;">
+                    <div id="ranks-list" class="item-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: BEFÖRDERUNG -->
+    <div id="rank-modal" class="modal-overlay hidden">
+        <div class="modal" style="text-align: center; max-width: 450px;">
+            <div style="font-size:50px; margin-bottom:10px;">🎖️</div>
+            <h2>Beförderung!</h2>
+            <p style="color: var(--text-muted); margin: 10px 0;">Du hast genügend XP gesammelt und einen neuen Rang erreicht:</p>
+            <h3 id="modal-rank-name" style="color: var(--primary-red); font-size: 24px; font-weight: 800; margin-bottom: 15px;">Feuerwehrmann</h3>
+            <div id="modal-unlocked-info" class="unlocked-info hidden">
+                🔓 <strong><span id="unlocked-count">0</span> neue Frage(n)</strong> freigeschaltet!
+            </div>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" onclick="closeRankModal()">Weiter lernen</button>
+        </div>
+    </div>
+
+    <script>
+        const defaultRanks = [
+            { id: 1, name: "Feuerwehrmannanwärter", points: 0 },
+            { id: 2, name: "Feuerwehrmann", points: 50 },
+            { id: 3, name: "Oberfeuerwehrmann", points: 150 },
+            { id: 4, name: "Hauptfeuerwehrmann", points: 250 },
+            { id: 5, name: "Löschmeister", points: 350 },
+            { id: 6, name: "Oberlöschmeister", points: 400 },
+            { id: 7, name: "Hauptlöschmeister", points: 550 },
+            { id: 8, name: "Brandmeister", points: 675 },
+            { id: 9, name: "Oberbrandmeister", points: 825 },
+            { id: 10, name: "Hauptbrandmeister", points: 1050 },
+            { id: 11, name: "Statdbrandinspektor", points: 1300 },
+            { id: 12, name: "Kreisbrandinspektor", points: 1600 }
+        ];
+
+        let categoriesObj = [
+            { name: "Grundsätze", subcats: ["Aufgaben", "Befehl", "Meldung", "Gefahren", "Dienst"] },
+            { name: "Organisation", subcats: ["Einheiten"] },
+            { name: "Persönliche Schutzausrüstung", subcats: ["PSA", "Helm"] },
+            { name: "Gerätschaften", subcats: ["Leitern", "Tragkraftspritze", "Knoten", "Leinen", "Beleuchtung", "Kleinlöschgeräte", "Schlauchtragekorb", "Verteiler", "Einsatz"] },
+            { name: "Einheiten", subcats: ["Staffel", "Trupp", "Zug", "Führung", "Maschinist", "Melder", "Gruppe", "Sicherheitsmaßnahmen", "Zusammenhalt"] },
+            { name: "Armaturen", subcats: ["Wasserfortleitung", "Strahlrohre", "Verteiler", "Übergangsstück", "Sammelstück", "Druckerhöhung"] },
+            { name: "Sicherheit", subcats: ["Atemschutz", "Unfallverhütung", "Sicherheitsgurt", "Gefahren", "Hygiene", "Trupp","Persönliche Schutzausrüstung", "Einsatz" ] },
+            { name: "Leinen und Knoten", subcats: ["Knoten"] },
+            { name: "Trupp", subcats: ["Aufgaben"] },
+            { name: "Wasserentnahme", subcats: ["Hydranten"] },
+            { name: "Taktik", subcats: ["Einheiten", "Trupp", "Einsatzgrundsätze", "Schluss", "Einheit"] },
+            { name: "Schläuche", subcats: ["Größen", "Verlegung", "Prüfung", "Saugarten"] },
+            { name: "Leiter", subcats: ["Steckleiter"] },
+            { name: "Wasserversorgung", subcats: ["Entnahme"] },
+            { name: "Grundlagen", subcats: ["Geltungsbereich", "Zusammensetzung"] },
+            { name: "Fahrzeuge", subcats: ["Maschinist", "Besatzung", "Position"] },
+            { name: "Führung", subcats: ["Befugnisse", "Meldungen", "Befehl", "Kommunikation", "Befehle"] },
+            { name: "Trupps im Brandeinsatz", subcats: ["Aufgaben", "Angriffstrupp", "Wassertrupp", "Schlauchtrupp"] },
+            { name: "Brandeinsatz", subcats: ["Einheit", "Wasserversorgung", "Rohre", "Bereitstellung", "Angriffstrupp", "Schlauchtrupp", "Verteiler", "Trupp", "Wassertrupp"] },
+            { name: "Einheit im Brandeinsatz", subcats: ["Einheitseinteilung"] },
+            { name: "Technische Hilfeleistung / Hilfeleistung", subcats: ["Grundlagen", "Aufgaben", "Geräte", "Abmarsch", "Einsatz", "Trupp"] },
+            { name: "Befehle", subcats: ["Einheitseinteilung"] },
+            { name: "Fahrzeugaufstellung", subcats: ["Einheitseinteilung"] },
+            { name: "FwDV 3", subcats: ["Einheitseinteilung"] },
+            { name: "Ausbildung", subcats: ["Einheitseinteilung"] },
+            { name: "Abschluss", subcats: ["Einsatzende"] },
+  
+        ];
+
+        const defaultQuestions = [
+    {
+        id: 1,
+        type: "sc",
+        category: "Grundsätze",
+        subcategory: "Aufgaben",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welches ist der erste Grundsatz bei allen Tätigkeiten im Feuerwehrdienst?",
+        options: ["Sicherheit und Gesundheitsschutz", "Schnelligkeit vor Gründlichkeit", "Materialschonung", "Wirtschaftlichkeit"],
+        correctAnswers: [0],
+        explanation: "Der Eigenschutz und die Sicherheit der Einsatzkräfte haben stets oberste Priorität gemäß FwDV 1."
+    },
+    {
+        id: 2,
+        type: "sc",
+        category: "Organisation",
+        subcategory: "Einheiten",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie viele Personen umfasst eine Löschgruppe (Stärke 1/8)?",
+        options: ["6 Personen", "9 Personen", "5 Personen", "18 Personen"],
+        correctAnswers: [1],
+        explanation: "Eine Löschgruppe besteht aus einem Gruppenführer und 8 Einsatzkräften (insgesamt 9 Personen)."
+    },
+    {
+        id: 3,
+        type: "mc",
+        category: "Persönliche Schutzausrüstung",
+        subcategory: "PSA",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Bestandteile gehören zur persönlichen Schutzausrüstung (PSA) für den Brandeinsatz nach FwDV 1?",
+        options: ["Feuerwehrhelm mit Nackenschutz", "Feuerwehrschutzanzug", "Feuerwehrschutzschuhwerk", "Sporthose"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Die Grundausstattung für den Brandeinsatz umfasst Helm, Schutzanzug und Schutzschuhwerk. Eine Sporthose gehört nicht zur PSA."
+    },
+    {
+        id: 5,
+        type: "sc",
+        category: "Gerätschaften",
+        subcategory: "Leitern",
+        minRank: 1,
+        minCatPoints: 100,
+        question: "Welche Steighöhe bzw. Arbeitshöhe erreicht man mit einer dreiteiligen Steckleiter maximal?",
+        options: ["Das 1. Obergeschoss", "Das 2. Obergeschoss (ca. 7 m)", "Das 3. Obergeschoss", "Das Dach eines Hochhauses"],
+        correctAnswers: [1],
+        explanation: "Die dreiteilige Steckleiter ist für Rettungswege bis zum 2. Obergeschoss (Rettungshöhe 7 m) zugelassen."
+    },
+    {
+        id: 6,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Staffel",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie setzt sich eine Staffel zusammen?",
+        options: ["1/4", "1/5", "1/8", "5/1"],
+        correctAnswers: [1],
+        explanation: "Eine Staffel besteht aus einem Staffelführer und 5 weiteren Feuerwehrmitgliedern (insgesamt 6 Personen)."
+    },
+    {
+        id: 7,
+        type: "mc",
+        category: "Armaturen",
+        subcategory: "Wasserfortleitung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Armaturen gehören zur Wasserfortleitung?",
+        options: ["Verteiler", "Sammelstück", "Standrohr", "B-Druckschlauch"],
+        correctAnswers: [0, 1],
+        explanation: "Verteiler und Sammelstück sind typische Armaturen zur Fortleitung und Verteilung von Wasser. Das Standrohr gehört zur Wasserentnahme. Der Schlauch ist keien Amatur."
+    },
+    {
+        id: 8,
+        type: "tf",
+        category: "Sicherheit",
+        subcategory: "Atemschutz",
+        minRank: 1,
+        minCatPoints: 50,
+        question: "Träger von umluftunabhängigem Atemschutz müssen während des Einsatzes namentlich registriert und überwacht werden.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Die Atemschutzüberwachung ist zwingend vorgeschrieben, um die Sicherheit der Trupps zu gewährleisten."
+    },
+    {
+        id: 10,
+        type: "sc",
+        category: "Trupp",
+        subcategory: "Aufgaben",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Aus wie vielen Personen besteht ein Trupp in der Regel?",
+        options: ["1", "2", "3", "4"],
+        correctAnswers: [1],
+        explanation: "Ein Trupp besteht im Regelfall aus einem Truppführer und einem Truppmann (insgesamt 2 Personen)."
+    },
+    {
+        id: 11,
+        type: "mc",
+        category: "Wasserentnahme",
+        subcategory: "Hydranten",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie sind Unterflurhydranten in der Regel im Straßenbild gekennzeichnet?",
+        options: ["Durch ovale Schilder", "Durch rechteckige Hinweisschilder mit rotem Rand", "Hinweisschilder zeigen den genauen Abstand in Metern", "die meisten Hydranten sind nicht beschildert"],
+        correctAnswers: [1, 2],
+        explanation: "Hydrantenschilder sind weiß mit rotem Rand und geben die genaue Lage (Abstand in Metern) an."
+    },
+    {
+        id: 12,
+        type: "tf",
+        category: "Taktik",
+        subcategory: "Einheiten",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Angriffstrupp hat im Brandeinsatz als erste Aufgabe die Menschenrettung durchzuführen.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Die Menschenrettung hat im Einsatz in der Regel oberste Priorität, weshalb diese primär dem Angriffstrupp obliegt."
+    },
+    {
+        id: 13,
+        type: "sc",
+        category: "Schläuche",
+        subcategory: "Größen",
+        minRank: 1,
+        minCatPoints: 200,
+        question: "Welchen Innendurchmesser hat ein herkömmlicher B-Druckschlauch?",
+        options: ["52 mm", "75 mm", "110 mm", "25 mm"],
+        correctAnswers: [1],
+        explanation: "Ein B-Schlauch hat einen Innendurchmesser von 75 mm, ein C-Schlauch 42 mm."
+    },
+    {
+        id: 14,
+        type: "sc",
+        category: "Gerätschaften",
+        subcategory: "Tragkraftspritze",
+        minRank: 1,
+        minCatPoints: 100,
+        question: "Welche Kurzbezeichnung hat eine Tragkraftspritze nach DIN EN 14466 (früher PFPN)?",
+        options: ["TS", "LF", "DLK", "RW"],
+        correctAnswers: [0],
+        explanation: "Die TS steht für Tragkraftspritze."
+    },
+    {
+        id: 15,
+        type: "tf",
+        category: "Grundsätze",
+        subcategory: "Befehl",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Ein Befehl darf grundsätzlich niemals mündlich erteilt werden.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Im Einsatz werden Befehle fast ausschließlich mündlich und klar erteilt."
+    },
+    {
+        id: 16,
+        type: "sc",
+        category: "Leiter",
+        subcategory: "Steckleiter",
+        minRank: 1,
+        minCatPoints: 50,
+        question: "Wie viele Teile hat eine standardmäßige Steckleiter für die Feuerwehr?",
+        options: ["2 Teile", "3 Teile", "4 Teile", "5 Teile"],
+        correctAnswers: [1],
+        explanation: "Die dreiteilige Steckleiter ist das Standard-Steckleiterteil der Feuerwehr."
+    },
+    {
+        id: 17,
+        type: "mc",
+        category: "Armaturen",
+        subcategory: "Strahlrohre",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Strahlrohrarten werden in der FwDV 1 bzw. im praktischen Feuerwehrdienst primär unterschieden?",
+        options: ["Mehrzweckstrahlrohre", "Hohlstrahlrohre", "Dampfstrahlrohre", "Flachstrahlrohre"],
+        correctAnswers: [0, 1],
+        explanation: "Mehrzweckstrahlrohre (z. B. DM, CM, BM) und Hohlstrahlrohre sind gängig."
+    },
+    {
+        id: 19,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Trupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer führt den Trupp an und ist für dessen Sicherheit und Ausführung verantwortlich?",
+        options: ["Der Maschinist", "Der Truppführer", "Der Gruppenführer", "Der Zugführer"],
+        correctAnswers: [1],
+        explanation: "Der Truppführer trägt die Verantwortung für seinen Trupp."
+    },
+    {
+        id: 20,
+        type: "sc",
+        category: "Wasserversorgung",
+        subcategory: "Entnahme",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Mit welchem Gerät wird Wasser aus einem Unterflur-Hydranten entnommen?",
+        options: ["Sammelstück", "Standrohr", "Verteiler", "Übergangsstück"],
+        correctAnswers: [1],
+        explanation: "Das Standrohr wird zur Wasserentnahme aus dem Ortsnetz genutzt."
+    },
+    {
+        id: 21,
+        type: "tf",
+        category: "Grundsätze",
+        subcategory: "Meldung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Empfänger eines Befehls muss diesen nach Ausführung oder bei Unklarheiten sofort rückmelden.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Die Rückmeldung stellt sicher, dass Befehle verstanden und ausgeführt wurden."
+    },
+    {
+        id: 22,
+        type: "sc",
+        category: "Gerätschaften",
+        subcategory: "Knoten",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie heißt der Knoten, der zum Zusammenbinden von zwei Leinen gleicher Stärke verwendet wird?",
+        options: ["Kreuzknoten", "Mastwurf", "Pfahlstich", "Schotenstich"],
+        correctAnswers: [3],
+        explanation: "Der Schotenstich verbindet zwei gleichstarke Leinen sicher miteinander."
+    },
+    {
+        id: 23,
+        type: "mc",
+        category: "Schläuche",
+        subcategory: "Verlegung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Worauf ist beim Verlegen von Druckschläuchen zu achten?",
+        options: ["Schläuche nicht knicken", "Schläuche nicht über scharfe Kanten ziehen", "Schläuche möglichst auf dem Gehweg verlegen"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Schlauchschäden müssen vermieden werden, und Verkehrswege sollten freigehalten oder geschützt werden."
+    },
+    {
+        id: 24,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Zug",
+        minRank: 1,
+        minCatPoints: 200,
+        question: "Wie viele Einsatzkräfte umfasst ein Löschzug in Normstärke (1/18)?",
+        options: ["9 Personen", "19 Personen", "22 Personen", "12 Personen"],
+        correctAnswers: [1],
+        explanation: "Ein Löschzug besteht aus Zugführer und 18 Einsatzkräften (insgesamt 19 Personen)."
+    },
+    {
+        id: 25,
+        type: "tf",
+        category: "Persönliche Schutzausrüstung",
+        subcategory: "Helm",
+        minRank: 1,
+        minCatPoints: 50,
+        question: "Der Feuerwehrhelm darf im Einsatz ohne Nackenschutz getragen werden, wenn es warm ist.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Der Nackenschutz ist fester Bestandteil des normgerechten Feuerwehrhelms im Brandeinsatz."
+    },
+    {
+        id: 26,
+        type: "sc",
+        category: "Armaturen",
+        subcategory: "Verteiler",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie viele Abgänge hat ein normaler B-Verteiler (B-CBC)?",
+        options: ["Einen Abgang", "Zwei Abgänge", "Drei Abgänge", "Vier Abgänge"],
+        correctAnswers: [2],
+        explanation: "Ein üblicher Verteiler verteilt einen B-Eingang auf meist drei Abgänge (z. B. einen B-Abgang und zwei C-Abgänge oder drei C-Abgänge)."
+    },
+    {
+        id: 27,
+        type: "sc",
+        category: "Leitern",
+        subcategory: "Anlegeleiter",
+        minRank: 1,
+        minCatPoints: 100,
+        question: "Unter welchem Winkel sollte eine Anlegeleiter an eine Wand angelegt werden?",
+        options: ["Ca. 45 Grad", "Ca. 65 bis 75 Grad", "Genau 90 Grad", "Ca. 30 Grad"],
+        correctAnswers: [1],
+        explanation: "Der Anstellwinkel für Anlegeleitern liegt optimal bei etwa 70 Grad."
+    },
+    {
+        id: 28,
+        type: "tf",
+        category: "Taktik",
+        subcategory: "Trupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Trupp arbeitet im Einsatz stets zusammen und trennt sich grundsätzlich nicht unnötig.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Der Grundsatz des Trupp-Prinzips besagt, dass der Trupp zusammenbleibt und sich gegenseitig schützt."
+    },
+    {
+        id: 29,
+        type: "sc",
+        category: "Gerätschaften",
+        subcategory: "Leinen",
+        minRank: 1,
+        minCatPoints: 300,
+        question: "Welche Mindest-Bruchlast muss eine Feuerwehrleine (FL 30) aufweisen?",
+        options: ["Ca. 5 kN (ca. 500 kg)", "Ca. 14 kN (ca. 1400 kg)", "Ca. 25 kN", "Ca. 100 kg"],
+        correctAnswers: [1],
+        explanation: "Eine Feuerwehrleine 30 muss extremen Belastungen standhalten und hat eine hohe vorgeschriebene Bruchlast (min. 14 kN)."
+    },
+    {
+        id: 30,
+        type: "mc",
+        category: "Grundsätze",
+        subcategory: "Gefahren",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche wesentlichen Gefahrenbereiche an der Einsatzstelle sind nach FwDV 1 zu beachten?",
+        options: ["Angriffstrupp-Gefahrenbereich", "Gefahren durch Elektrizität", "Gefahren durch Einsturz und herabfallende Teile", "Gefahren durch giftige Stoffe"],
+        correctAnswers: [1, 2, 3],
+        explanation: "A-E-G-S-T-A-C-H-Regeln (Atemgifte, Elektrizität, Gas, Sturz, Explosion, Panik, Chemikalien, Verkehr) beschreiben die Gefahren."
+    },
+    {
+        id: 31,
+        type: "tf",
+        category: "Schläuche",
+        subcategory: "Prüfung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Druckschläuche dürfen nach jedem Gebrauch feucht gerollt im Fahrzeug gelagert werden.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Schläuche müssen gereinigt und getrocknet werden (oder fachgerecht gewartet), um Fäulnis und Schimmel zu vermeiden."
+    },
+    {
+        id: 32,
+        type: "sc",
+        category: "Armaturen",
+        subcategory: "Übergangsstück",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wozu dient ein Übergangsstück (z. B. A-B oder B-C)?",
+        options: ["Zum Verbinden von Schläuchen unterschiedlichen Durchmessers", "Zum Absperren des Wassers", "Zur Druckerhöhung", "Zum Entlüften der Pumpe"],
+        correctAnswers: [0],
+        explanation: "Übergangsstücke verbinden Kupplungen verschiedener Größen (z. B. B-Kupplung mit C-Kupplung)."
+    },
+    {
+        id: 33,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Führung",
+        minRank: 1,
+        minCatPoints: 50,
+        question: "Wer ist der direkte Vorgesetzte des Wassertrupps in einer Löschgruppe?",
+        options: ["Der Maschinist", "Der Gruppenführer", "Der Angriffstruppführer", "Der Staffelführer"],
+        correctAnswers: [1],
+        explanation: "Alle Trupps einer Löschgruppe unterstehen direkt dem Gruppenführer."
+    },
+    {
+        id: 34,
+        type: "tf",
+        category: "Sicherheit",
+        subcategory: "Sicherheitsgurt",
+        minRank: 1,
+        minCatPoints: 150,
+        question: "Der Feuerwehr-Haltegurt darf uneingeschränkt als Auffanggurt bei Absturzgefahr verwendet werden.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Der Haltegurt ist kein Auffanggurt und darf nur zum Halten und Rückhalten, nicht aber zum Auffangen eines Sturzes genutzt werden."
+    },
+    {
+        id: 35,
+        type: "sc",
+        category: "Gerätschaften",
+        subcategory: "Beleuchtung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welches Gerät gehört zur Standardausstattung zur Ausleuchtung einer Einsatzstelle nach FwDV 1?",
+        options: ["Flutlichtstrahler und Stativ", "Nur eine Taschenlampe", "Ein Laserpointer", "Ein Kerzenleuchter"],
+        correctAnswers: [0],
+        explanation: "Zur Ausleuchtung werden Scheinwerfer, Stative und Stromerzeuger eingesetzt."
+    },
+    {
+        id: 36,
+        type: "mc",
+        category: "Taktik",
+        subcategory: "Einsatzgrundsätze",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Grundregeln gelten für das Vorgehen im Innenangriff?",
+        options: ["Nur mit angelegtem Atemschutz", "Mit gefülltem Schlauch vorgehen", "Türen vor dem Öffnen auf Hitze prüfen", "Ohne Funkkontakt vorgehen"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Sicherheit im Innenangriff erfordert Atemschutz, gefüllte Leitungen (Wasserschlaggefahr/Eigenschutz) und das Prüfen von Türen."
+    },
+    {
+        id: 37,
+        type: "tf",
+        category: "Grundsätze",
+        subcategory: "Meldung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Funksprüche beginnen mit dem Empfanger und enden mit dem Absender.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Der Funk- oder Meldungsverkehr folgt präzisen Protokollen (Wer spricht zu wem?)."
+    },
+    {
+        id: 38,
+        type: "sc",
+        category: "Leitern",
+        subcategory: "Hakenleiter",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wofür wurde die Hakenleiter primär eingesetzt (historisch/speziell)?",
+        options: ["Zum Überbrücken von Gräben", "Zum Steigen an Fassaden über Fenster", "Als Zimmerleiter", "Als Unterbau für Pumpen"],
+        correctAnswers: [1],
+        explanation: "Die Hakenleiter diente dem Erreichen höherer Stockwerke an Gebäudefassaden, darf aber heute nicht mehr genutzt werden."
+    },
+    {
+        id: 39,
+        type: "sc",
+        category: "Schläuche",
+        subcategory: "Saugarten",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Schläuche werden für die Wasserentnahme aus offenen Gewässern verwendet?",
+        options: ["A- oder B-Druckschläuche", "Saugschläuche (formstabil)", "C-Schläuche", "Gartenschläuche"],
+        correctAnswers: [1],
+        explanation: "Für die saugende Seite (Unterdruck) dürfen nur formstabile Saugschläuche verwendet werden."
+    },
+    {
+        id: 40,
+        type: "tf",
+        category: "Sicherheit",
+        subcategory: "Gefahren",
+        minRank: 1,
+        minCatPoints: 150,
+        question: "Bei Gefahr im Verzug kann der Einheitsführer von den Standard-Vorgaben der FwDV 1 abweichen.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Der Einheitsführer hat die Entscheidungsgewalt und Verantwortung zur Gefahrenabwehr."
+    },
+    {
+        id: 41,
+        type: "sc",
+        category: "Armaturen",
+        subcategory: "Sammelstück",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie viele Eingänge hat ein übliches Sammelstück (z. B. 2x B zu A)?",
+        options: ["Einen Eingang", "Zwei Eingänge", "Drei Eingänge", "Vier Eingänge"],
+        correctAnswers: [1],
+        explanation: "Das Sammelstück führt meist zwei Leitungen (z. B. zwei B-Leitungen) in eine größere Leitung (A) zusammen."
+    },
+    {
+        id: 42,
+        type: "mc",
+        category: "Gerätschaften",
+        subcategory: "Kleinlöschgeräte",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Geräte zählen zu den Kleinlöschgeräten nach FwDV 1?",
+        options: ["Tragbarer Feuerlöscher", "Kübelspritze", "WSA (Wasser-Tragkraftspritze)", "Strahlrohr"],
+        correctAnswers: [0, 1],
+        explanation: "Feuerlöscher und Kübelspritzen sind klassische Kleinlöschgeräte für die Entstehungsbrandbekämpfung."
+    },
+    {
+        id: 43,
+        type: "tf",
+        category: "Trupp",
+        subcategory: "Aufgaben",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Wassertrupp baut bei einem Brandeinsatz die Wasserversorgung vom Verteiler zur Wasserentnahmestelle auf.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Nach FwDV 3 / FwDV 1 ist der Aufbau der Wasserversorgung ab dem Verteiler primär Aufgabe des Wassertrupps."
+    },
+    {
+        id: 45,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Staffel",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer sitzt bei einer Staffel auf dem Platz des Maschinisten?",
+        options: ["Der Maschinist", "Der Truppführer", "Der Gruppenführer", "Niemand"],
+        correctAnswers: [0],
+        explanation: "Auch in der Staffel gibt es einen Maschinisten als Fahrer und Bedienkraft für die Pumpe."
+    },
+    {
+        id: 46,
+        type: "tf",
+        category: "Sicherheit",
+        subcategory: "Hygiene",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Die Einsatzkleidung sollte nach einem Brandeinsatz möglichst noch an der Einsatzstelle grob gereinigt und kontaminierte Kleidung gewechselt werden (schwarze Wache).",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Die Einsatzstellen-Hygiene gewinnt massiv an Bedeutung, um den Kontakt mit krebserregenden Brandrückständen zu minimieren."
+    },
+    {
+        id: 47,
+        type: "sc",
+        category: "Armaturen",
+        subcategory: "Druckerhöhung",
+        minRank: 1,
+        minCatPoints: 150,
+        question: "Wozu dient ein Druckbegrenzungsventil?",
+        options: ["Zum Schutz vor zu hohem Eingangsdruck oder Druckstößen in der Schlauchleitung", "Zum Erhöhen des Wasserdrucks", "Zum Ablassen von Schmutzwasser", "Zum Mischen von Schaum"],
+        correctAnswers: [0],
+        explanation: "Druckbegrenzungsventile schützen vor gefährlichen Druckspitzen und zu hohen Drücken."
+    },
+    {
+        id: 48,
+        type: "tf",
+        category: "Grundsätze",
+        subcategory: "Dienst",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Disziplin und gegenseitige Unterstützung sind im Feuerwehrdienst entbehrlich, solange die Technik funktioniert.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Ohne Kameradschaft, Disziplin und Verlässlichkeit im Team funktioniert kein reibungsloser Feuerwehreinsatz."
+    },
+    {
+        id: 49,
+        type: "sc",
+        category: "Gerätschaften",
+        subcategory: "Schlauchtragekorb",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welchen Vorteil bietet ein Schlauchtragekorb im Innenangriff?",
+        options: ["Es können sofort mehrere fertig gekuppelte C-Schläuche als Buchtenbündel mitgenommen werden", "Er dient als Sitzgelegenheit", "Er ersetzt das Strahlrohr", "Er kühlt das Wasser"],
+        correctAnswers: [0],
+        explanation: "Schlauchtragekörbe erleichtern das schnelle Vorgehen mit vorgekuppelten Schläuchen im Treppenraum."
+    },
+    {
+        id: 50,
+        type: "tf",
+        category: "Taktik",
+        subcategory: "Schluss",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Nach Beendigung des Einsatzes gehört das Wiederherstellen der Einsatzbereitschaft (Ausrüstung reinigen, aufrüsten) zu den Pflichten der Einsatzkräfte.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Der Einsatz ist erst dann beendet, wenn Fahrzeug und Ausrüstung vollständig gereinigt, geprüft und wieder einsatzbereit sind."
+    },
+    {
+        id: 51,
+        type: "sc",
+        category: "Grundsätze",
+        subcategory: "Gefahren an der Einsatzstelle",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welches Merkwort fasst die typischen Gefahren an der Einsatzstelle nach FwDV 1 zusammen?",
+        options: ["A-E-G-S-T-A-C-H", "S-O-F-O-R-T", "W-A-S-S-E-R", "P-A-N-I-K"],
+        correctAnswers: [0],
+        explanation: "Das Merkwort A-E-G-S-T-A-C-H steht für Atemgifte, Elektrizität, Gas, Sturz, Explosion, Chemikalien/Corrosiva/Container, Auskühlung/Einsturz und Verkehr."
+    },
+    {
+        id: 52,
+        type: "mc",
+        category: "Gerätschaften",
+        subcategory: "Leitern",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Pflichten gelten beim Besteigen von Steckleitern nach FwDV 1?",
+        options: ["Die Leiter muss gegen Abrutschen gesichert werden", "Es darf sich jeweils nur eine Person pro Leiterteil befinden", "alleinstehende Leitern dürfen nicht erschoben werden", "Der Abstand zur Wand ist beliebig"],
+        correctAnswers: [0, 1,2],
+        explanation: "Steckleitern müssen gegen Abrutschen gesichert und nach Gewichtslast-Vorgaben (i.d.R. 1 Person pro Leiterteil) begangen werden."
+    },
+    {
+        id: 53,
+        type: "tf",
+        category: "Persönliche Schutzausrüstung",
+        subcategory: "PSA",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Feuerwehrhelm darf bei Aufräumarbeiten im Freien ohne Kinnriemen getragen werden.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Der Kinnriemen des Feuerwehrhelms muss grundsätzlich geschlossen getragen werden, um den sicheren Sitz zu gewährleisten."
+    },
+    {
+        id: 54,
+        type: "sc",
+        category: "Leinen und Knoten",
+        subcategory: "Mastwurf",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie wird der Mastwurf beim Hochziehen von Strahlrohren oder Geräten zusätzlich gesichert?",
+        options: ["Durch einen doppelten halben Schlag am Gerät", "Durch einen Kreuzknoten", "Durch eine Spierenstich-Schlaufe", "Gar nicht nötig"],
+        correctAnswers: [0],
+        explanation: "Beim Hochziehen von Geräten mit dem Mastwurf muss dieser zwingend durch einen halben Schlag am Gegenstand gesichert werden."
+    },
+    {
+        id: 55,
+        type: "mc",
+        category: "Armaturen",
+        subcategory: "Strahlrohre",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche wesentlichen Funktionen erfüllt das Ventil eines Mehrzweckstrahlrohrs?",
+        options: ["Vollstrahl einstellen", "Sprühstrahl einstellen", "Strahlrohr absperren", "Druckerhöhung erzeugen"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Das Mehrzweckstrahlrohr erlaubt Vollstrahl, Sprühstrahl sowie das Absperren des Wassers."
+    },
+    {
+        id: 56,
+        type: "tf",
+        category: "Taktik",
+        subcategory: "Trupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Ein einzelner Feuerwehrmitglied darf sich im Gefahrenbereich kurzzeitig vom Trupp trennen, wenn er schnell etwas holen muss.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Das Trupp-Prinzip besagt, dass der Trupp im Gefahrenbereich unzertrennlich zusammenbleiben muss."
+    },
+
+    {
+        id: 58,
+        type: "mc",
+        category: "Gerätschaften",
+        subcategory: "Handwerkszeug",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Werkzeuge gehören zur Standardausstattung für den Brandangriff im Fahrzeug (Auswahl)?",
+        options: ["Feuerwehraxt", "Brechstange / Halligan-Tool", "Bolzenschneider", "Rasenmäher"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Axt, Brechstange und Bolzenschneider sind klassische Werkzeuge für den gewaltsamen Zugang und technische Hilfeleistungen."
+    },
+    {
+        id: 59,
+        type: "tf",
+        category: "Grundsätze",
+        subcategory: "Befehl",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Befehle im Einsatz müssen so gegeben werden, dass sie vom Empfänger unmissverständlich verstanden und wiederholt oder quittiert werden können.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Die klare Kommunikation ist überlebenswichtig, daher müssen Befehle eindeutig quittiert oder rückgemeldet werden."
+    },
+    {
+        id: 60,
+        type: "sc",
+        category: "Schläuche",
+        subcategory: "Prüfung",
+        minRank: 4,
+        minCatPoints: 0,
+        question: "Mit welchem Prüfdruck werden normale Fw-Druckschläuche im Rahmen der regelmäßigen Prüfung (z.B. nach DIN) typischerweise beaufschlagt?",
+        options: ["Mit ca. 10 bis 12 bar", "Mit genau 2 bar", "Mit 50 bar", "Schläuche werden nie mit Druck geprüft"],
+        correctAnswers: [0],
+        explanation: "Druckschläuche werden in der Regel mit einem Prüfdruck von 12 bar (bzw. je nach Normvorgabe) auf Dichtheit geprüft."
+    },
+
+    {
+        id: 62,
+        type: "tf",
+        category: "Sicherheit",
+        subcategory: "Atemschutz",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Das Anlegen von Pressluftatmern muss innerhalb des Gefahrenbereichs erfolgen.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Atemschutzgeräte müssen grundsätzlich vor dem Betreten des Gefahrenbereichs (im Bereitstellungsraum / sicheren Bereich) angelegt und geprüft werden."
+    },
+
+    {
+        id: 64,
+        type: "mc",
+        category: "Einheiten",
+        subcategory: "Taktische Einheiten",
+        minRank: 2,
+        minCatPoints: 0,
+        question: "Welche taktischen Einheiten unterhalb des Zuges sind in der Feuerwehr-Struktur verankert?",
+        options: ["Trupp (1/1)", "Staffel (1/5)", "Gruppe (1/8)", "Division (1/50)"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Trupp, Staffel und Gruppe sind die klassischen taktischen Einheiten nach FwDV 3 / FwDV 1."
+    },
+    {
+        id: 65,
+        type: "tf",
+        category: "Gerätschaften",
+        subcategory: "Beleuchtung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Tragbare Stromerzeuger dürfen in geschlossenen, ungelüfteten Räumen ohne Abgasabsaugung betrieben werden.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Verbrennungsmotoren erzeugen tödliches Kohlenstoffmonoxid und dürfen niemals in geschlossenen Räumen ohne Abgasführung betrieben werden."
+    },
+    {
+        id: 66,
+        type: "sc",
+        category: "Armaturen",
+        subcategory: "Wasserfortleitung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wozu dient ein Rückschlagventil in einer Wasserversorgungsleitung?",
+        options: ["Es verhindert das Zurückfließen des Wassers bei Unterbrechungen", "Es erhöht den Druck ins Unendliche", "Es mischt Schaummittel bei", "Es dient als Kupplungsschlüssel"],
+        correctAnswers: [0],
+        explanation: "Das Rückschlagventil sorgt dafür, dass das Wasser nur in eine Richtung fließen kann."
+    },
+    {
+        id: 67,
+        type: "mc",
+        category: "Grundsätze",
+        subcategory: "Meldung",
+        minRank: 8,
+        minCatPoints: 0,
+        question: "Welche Bestandteile gehören zu einer standardmäßigen Lagemeldung an den Einheitsführer?",
+        options: ["Wer meldet (Absender)", "Wo befindet man sich / Wo ist der Einsatzort", "Was wird vorgefunden (Lage)", "Welche Maßnahmen wurden getroffen/werden benötigt"],
+        correctAnswers: [0, 1, 2, 3],
+        explanation: "Eine vollständige Lagemeldung folgt dem Schema: Wer, Wo, Was, Welche Maßnahmen."
+    },
+    {
+        id: 68,
+        type: "tf",
+        category: "Schläuche",
+        subcategory: "Verlegung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Druckschläuche dürfen über stark befahrenen Straßen ohne Schlauchbrücken verlegt werden, wenn die Fahrzeuge langsam fahren.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Überfahrten von Schläuchen auf Straßen erfordern zwingend Schlauchbrücken, um Beschädigungen und Wasserschläge zu verhindern."
+    },
+
+    {
+        id: 70,
+        type: "mc",
+        category: "Persönliche Schutzausrüstung",
+        subcategory: "Sicherheit",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Schutzausrüstung ist beim Arbeiten mit Kettensägen im Holz zusätzlich zur Standard-PSA vorgeschrieben?",
+        options: ["Schnittschutzhose", "Schnittschutzstiefel / -schuhe", "Helm mit Gehörschutz und Gesichtsschutzgitter", "Wathose"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Die erweiterte PSA für Motorsägenarbeiten umfasst zwingend Schnittschutz und Gesichtsschutz."
+    },
+    {
+        id: 71,
+        type: "tf",
+        category: "Taktik",
+        subcategory: "Innenangriff",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Vor dem Öffnen von Türen zu brandbetroffenen Räumen muss die Tür auf Hitze (z.B. mit dem Handrücken) geprüft werden.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Das Prüfen der Tür auf Temperatur schützt vor einer plötzlichen Rauchgasdurchzündung (Flashover/Backdraft)."
+    },
+    {
+        id: 72,
+        type: "sc",
+        category: "Gerätschaften",
+        subcategory: "Tragkraftspritze",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie viele Personen sind für das Tragen einer genormten Tragkraftspritze (TS) im Regelfall vorgesehen?",
+        options: ["4 Personen", "1 Person", "2 Personen", "8 Personen"],
+        correctAnswers: [0],
+        explanation: "Tragkraftspritzen sind mit vier Tragegriffen versehen und werden von 4 Einsatzkräften getragen."
+    },
+    {
+        id: 73,
+        type: "mc",
+        category: "Armaturen",
+        subcategory: "Verteiler",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Absperrorgane befinden sich an einem traditionellen B-Verteiler?",
+        options: ["Drei Absperrschieber bzw. Ventile für die Abgänge", "Ein Hauptventil für den Eingang", "Keine Absperrorgane", "Ein automatisches Überdruckventil"],
+        correctAnswers: [0],
+        explanation: "Die Abgänge des Verteilers lassen sich einzeln über Kugelventile oder Niederschraubventile regulieren und absperren."
+    },
+    {
+        id: 74,
+        type: "tf",
+        category: "Grundsätze",
+        subcategory: "Dienst",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Jedes Feuerwehrmitglied ist verpflichtet, Mängel an Gerätschaften sofort dem Vorgesetzten zu melden.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Die Einsatzbereitschaft hängt direkt von der Mängelfreiheit ab, weshalb Defekte umgehend gemeldet werden müssen."
+    },
+    {
+        id: 75,
+        type: "sc",
+        category: "Leinen",
+        subcategory: "Leinen",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Farbe hat eine Standard-Feuerwehrleine (FL 30) nach Vorschrift meistens oder wie ist sie beschaffen?",
+        options: ["Kernmantel-Seil, weiß oder mit Kennfaden", "Immer neonpink", "Aus starrem Metalldraht", "Aus einfachem Hanf-Garn ohne Kern"],
+        correctAnswers: [0],
+        explanation: "Feuerwehrleinen sind genormte Kernmantel-Polyamidseile mit hoher Reißfestigkeit."
+    },
+    {
+        id: 76,
+        type: "mc",
+        category: "Wasserversorgung",
+        subcategory: "Offenes Gewässer",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Hilfsmittel werden zum Sichern und Betreiben einer Saugleitung in einem offenen Gewässer benötigt?",
+        options: ["Saugkorb", "Leine zum Sichern / Halten", "Saugenschutzkorb gegen Verschmutzung", "Ventilleine"],
+        correctAnswers: [0, 1, 2,3],
+        explanation: "Saugkorb, Halteleine und Schutzkorb/Seiher gehören zwingend zur Entnahme aus offenen Gewässern."
+    },
+    {
+        id: 77,
+        type: "tf",
+        category: "Sicherheit",
+        subcategory: "Sanität",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Bei Verletzungen im Einsatz ist die Sofortrettung aus dem Gefahrenbereich wichtiger als die sofortige Komplettversorgung vor Ort.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Patienten müssen zuerst in einen sicheren Bereich gebracht werden, da der Gefahrenbereich weitere Verletzte fordern kann (Eigenschutz vor Fremdschutz)."
+    },
+
+    {
+        id: 79,
+        type: "mc",
+        category: "Einheiten",
+        subcategory: "Führung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer gehört zur Besatzung eines Löschfahrzeugs mit Gruppenbesatzung (1/8)?",
+        options: ["Gruppenführer", "Maschinist", "Melder", "Angriffstrupp, Wassertrupp, Schlauchtrupp"],
+        correctAnswers: [0, 1, 2, 3],
+        explanation: "Die Löschgruppe setzt sich aus Gruppenführer, Maschinist, Melder und den drei Trupps (Angriffstrupp, Wassertrupp, Schlauchtrupp) zusammen."
+    },
+    {
+        id: 80,
+        type: "tf",
+        category: "Grundsätze",
+        subcategory: "Befehl",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Ein Befehl darf befolgt werden, auch wenn er offensichtlich eine Straftat darstellt.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Befehle, die gegen Strafgesetze verstoßen, dürfen nicht ausgeführt werden. Generell  dürfen Befehle immer hinterfragt werden "
+    },
+    {
+        id: 81,
+        type: "sc",
+        category: "Schläuche",
+        subcategory: "Typen",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welcher Schlauchdurchmesser wird für den Schnellangriff oder leichtere C-Rohre häufig als C-Druckschlauch verwendet?",
+        options: ["C 42 (oder C 52)", "A 110", "B 75", "D 25"],
+        correctAnswers: [0],
+        explanation: "C-Schläuche haben üblicherweise einen Innendurchmesser von 42 mm (C42) oder klassisch 52 mm (C52)."
+    },
+
+    {
+        id: 83,
+        type: "tf",
+        category: "Leitern",
+        subcategory: "Sicherheit",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Tragbare Leitern dürfen als waagerechte Brücke über tiefe Gräben ohne statische Freigabe genutzt werden.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Tragbare Leitern sind für den Steig- und Rettungsweg konzipiert und dürfen keinesfalls eigenmächtig als frei tragende Brücken zweckentfremdet werden."
+    },
+
+    {
+        id: 85,
+        type: "mc",
+        category: "Taktik",
+        subcategory: "Gefahrenabwehr",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Sofortmaßnahmen sind bei dem Fund einer unbekannten, verdächtigen Chemikalie zu ergreifen?",
+        options: ["Sicherheitsabstand einhalten", "Gefahrenbereich kennzeichnen und absperren", "Keine Stoffe berühren oder einatmen", "Sofort mit Hygiene Handschuhen in eien Schüttmulde legen"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Gefahrgut erfordert strikten Eigenschutz, Abstand und Absperrung statt Eigenexperimente."
+    },
+    {
+        id: 86,
+        type: "tf",
+        category: "Grundsätze",
+        subcategory: "Meldung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Eine Rückmeldung muss immer das Wort 'Ende' enthalten, um das Gespräch zu beenden.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Das Wort 'Ende' beendet ein Gespräch bzw. eine Meldung endgültig."
+    },
+    {
+        id: 87,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Zug",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer leitet einen Löschzug im Einsatz nach FwDV 3 / FwDV 1?",
+        options: ["Der Zugführer", "Der Gruppenführer", "Der Maschinist", "Der Bürgermeister"],
+        correctAnswers: [0],
+        explanation: "Die Führungskraft für einen Zug ist der Zugführer."
+    },
+
+
+    {
+        id: 90,
+        type: "sc",
+        category: "Armaturen",
+        subcategory: "Strahlrohre",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welchen Vorteil bietet ein modernes Hohlstrahlrohr im Vergleich zum klassischen Mehrzweckstrahlrohr?",
+        options: ["Stufenlose Verstellbarkeit des Sprühbildes und konstanter Durchfluss", "Es wiegt 50 kg", "Es benötigt kein Wasser", "Es erzeugt automatisch Schaum ohne Zubehör"],
+        correctAnswers: [0],
+        explanation: "Hohlstrahlrohre ermöglichen einen feinen, regulierbaren Sprühstrahl mit optimierter Löschwirkung und konstanten Wassertropfen."
+    },
+    {
+        id: 91,
+        type: "mc",
+        category: "Grundsätze",
+        subcategory: "Einsatzgrundsätze",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche drei Grundregeln bilden das Fundament jeden Feuerwehreinsatzes (die taktische Trias)?",
+        options: ["Menschenrettung", "Abwehreinsturz / Begrenzung", "Löschen / Technische Hilfe", "Materialverkauf"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Menschenrettung, Schutz von Sachwerten/Umwelt und die Brandbekämpfung bzw. technische Hilfe sind die Kernaufgaben."
+    },
+    {
+        id: 92,
+        type: "tf",
+        category: "Persönliche Schutzausrüstung",
+        subcategory: "Helm",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Feuerwehrhelm schützt auch vor elektrischer Spannung bei direkten Berührungen von Freileitungen.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Normale Feuerwehrhelme bieten keinen absoluten Schutz vor Starkstrom; der Mindestabstand zu elektrischen Anlagen ist zwingend einzuhalten."
+    },
+    {
+        id: 93,
+        type: "sc",
+        category: "Leitern",
+        subcategory: "Steckleiter",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie viele Steckleiterteile dürfen maximal zusammengesteckt werden, um Personen zu retten?",
+        options: ["Maximal 4 Teile (für ca. 3. Obergeschoss / 10 m)", "Beliebig viele", "Genau 1 Teil", "10 Teile"],
+        correctAnswers: [0],
+        explanation: "Die dreiteilige Steckleiter ist bis zum 2. OG zugelassen; die vierteilige Steckleiter (bzw. Steckleiter in maximaler Ausbauform von 4 Teilen) erreicht das 3. OG (Rettungshöhe ca. 10m)."
+    },
+    {
+        id: 94,
+        type: "mc",
+        category: "Gerätschaften",
+        subcategory: "Beleuchtung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Bestandteile gehören zu einem mobilen Beleuchtungssatz auf einem Löschfahrzeug?",
+        options: ["Flutlichtstrahler (z.B. 1000 Watt)", "Teleskop-Dreibeinstativ", "Verteilerkabel / Trommel", "Gasbrenner"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Stativ, Strahler und Kabeltrommeln bilden die klassische mobile Ausleuchtungseinheit."
+    },
+    {
+        id: 95,
+        type: "tf",
+        category: "Taktik",
+        subcategory: "Trupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Truppmann ist dem Truppführer im Einsatz unterstellt und hat dessen Anweisungen zu befolgen.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Der Truppführer führt den Trupp, der Truppmann unterstützt ihn und arbeitet weisungsgebunden mit."
+    },
+
+    {
+        id: 97,
+        type: "mc",
+        category: "Schläuche",
+        subcategory: "Schlauchpflege",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Was geschieht mit Schläuchen nach einem Einsatz im Rahmen der Schlauchpflege?",
+        options: ["Reinigung (innen und außen)", "Prüfung auf Beschädigungen", "Trocknung im Schlauchturm oder Trockner", "Sofortiges Wegwerfen"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Schläuche müssen gereinigt, auf Dichtheit geprüft und getrocknet werden, bevor sie wieder aufgerüstet werden."
+    },
+    {
+        id: 98,
+        type: "tf",
+        category: "Sicherheit",
+        subcategory: "Gefahren",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Bei Gefahr von herabfallenden Trandteilen oder Ziegeln muss der Bereich um das Gebäude sofort großräumig abgesperrt werden.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Einsturz- und herabfallende Teile stellen eine akute Lebensgefahr dar, weshalb Absperrungen (Sicherheitsabstand = Gebäudehöhe) zwingend sind."
+    },
+    {
+        id: 99,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Staffel",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Aus welchen Positionen setzt sich die Mindestbesatzung einer Staffel (1/5) im Einsatzfahrzeug zusammen?",
+        options: ["Staffelführer, Maschinist, Angriffstrupp (2) und Wassertrupp (2)", "Nur Gruppenführer", "Nur 2 Personen", "Gruppenführer, Maschinist, Melder, Angriffstrupp (2), Wassertrupp (2) und Schlauchtruoo (2)"],
+        correctAnswers: [0],
+        explanation: "Eine Staffel besteht aus Staffelführer, Maschinist, Angriffstrupp und Wassertrupp (insgesamt 6 Personen)."
+    },
+    {
+        id: 100,
+        type: "tf",
+        category: "Grundsätze",
+        subcategory: "Abschluss",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Nach einem erfolgreichen Einsatz ist die Arbeit erst dann beendet, wenn das Fahrzeug wieder komplett aufgerüstet, gereinigt und einsatzbereit im Feuerwehrhaus steht.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Die Wiederherstellung der uneingeschränkten Einsatzbereitschaft gehört zum Standard-Prozedere nach jedem Einsatz."
+    },
+     {
+        id: 101,
+        type: "sc",
+        category: "Grundlagen",
+        subcategory: "Geltungsbereich",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Worauf findet die FwDV 3 Anwendung?",
+        options: ["Auf alle taktischen Einheiten im Lösch- und Hilfeleistungseinsatz", "Ausschließlich auf die Berufsfeuerwehr bei Großbränden", "Nur auf den Sanitätsdienst", "Ausschließlich auf Waldbrände"],
+        correctAnswers: [0],
+        explanation: "Die FwDV 3 regelt den Einsatz der Einheiten im Lösch- und Hilfeleistungseinsatz für alle Feuerwehren."
+    },
+    {
+        id: 102,
+        type: "mc",
+        category: "Einheiten",
+        subcategory: "Trupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Eigenschaften treffen auf den Trupp zu?",
+        options: ["Er ist die kleinste taktische Einheit", "Er besteht aus einem Truppführer und einem Truppmann", "Er kann selbstständig handeln, ist aber meist in eine Gruppe oder Staffel integriert", "Er besteht immer aus genau 9 Personen"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Ein Trupp besteht aus 2 Personen (Führer und Mann) und ist die kleinste taktische Einheit der Feuerwehr."
+    },
+    {
+        id: 103,
+        type: "tf",
+        category: "Einheiten",
+        subcategory: "Staffel",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Die Staffelstärke beträgt im Regelfall 1/5 (6 Personen).",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Eine Staffel setzt sich aus 1 Führungsdienstgrad/Staffelführer und 5 Einsatzkräften zusammen."
+    },
+    {
+        id: 104,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Gruppe",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie setzt sich die Standard-Löschgruppe nach Stärke zusammen?",
+        options: ["1/8 (9 Personen)", "1/5 (6 Personen)", "0/9 (9 Personen)", "1/2 (3 Personen)"],
+        correctAnswers: [0],
+        explanation: "Eine Gruppe besteht aus 1 Gruppenführer und 8 Mannschaftsmitgliedern (1/8)."
+    },
+
+    {
+        id: 106,
+        type: "tf",
+        category: "Führung",
+        subcategory: "Befugnisse",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Einheitsführer ist für die Durchführung des Einsatzauftrags und die Einhaltung der Unfallverhütungsvorschriften verantwortlich.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Der Einheitsführer trägt die Gesamtverantwortung für Auftragserfüllung, Taktik und Sicherheit."
+    },
+    {
+        id: 107,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Zug",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Woraus besteht ein genormter Löschzug (Zugstärke)?",
+        options: ["Zugführer und mindestens zwei Gruppen (bzw. entsprechende Einheiten)", "Nur aus drei Staffeln", "Aus 30 Personen ohne Fahrzeugbindung", "Aus einem einzigen Trupp"],
+        correctAnswers: [0],
+        explanation: "Der Löschzug führt mindestens zwei Gruppen sowie den Zugführer als Führungsorgan."
+    },
+    {
+        id: 108,
+        type: "mc",
+        category: "Trupps im Brandeinsatz",
+        subcategory: "Aufgaben",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Trupps gehören zur Standard-Löschgruppe im Brandeinsatz?",
+        options: ["Angriffstrupp", "Wassertrupp", "Schlauchtrupp", "Sicherheitstrupp"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Die klassische Löschgruppe hat drei Haupt-Trupps: Angriffs-, Wasser- und Schlauchtrupp."
+    },
+    {
+        id: 109,
+        type: "tf",
+        category: "Trupps im Brandeinsatz",
+        subcategory: "Angriffstrupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Angriffstrupp rettet gefährdete Personen, führt den Brandeinsatz (Vornahme des ersten Rohrs) und setzt den Verteiler.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Der Angriffstrupp rettet und nimmt das erste Rohr vor. Den Verteiler setzt jedoch der Wassertrupp!"
+    },
+    {
+        id: 110,
+        type: "sc",
+        category: "Trupps im Brandeinsatz",
+        subcategory: "Wassertrupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Was ist eine der Hauptaufgaben des Wassertrupps beim Brandeinsatz nach FwDV 3?",
+        options: ["Herstellen der Wasserversorgung vom Fahrzeug zum Verteiler und Vornahme des 2. Rohrs", "Nur das Fahren des Fahrzeugs", "Das Bedienen der Drehleiter", "Das Verfassen des Einsatzberichts"],
+        correctAnswers: [0],
+        explanation: "Der Wassertrupp baut die Wasserversorgung vom Fahrzeug zum Verteiler auf und unterstützt bzw. nimmt das 2. Rohr vor."
+    },
+    {
+        id: 111,
+        type: "mc",
+        category: "Trupps im Brandeinsatz",
+        subcategory: "Schlauchtrupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Aufgaben übernimmt der Schlauchtrupp im Brandeinsatz?",
+        options: ["Wasserversorgung von der Wasserquelle zum Fahrzeug aufbauen", "Zusätzliche Gerätschaften (z. B. Steckleiter, Beleuchtung) zum Einsatzort bringen", "Den Angriffstrupp bei Bedarf unterstützen", "Das Fahrzeug allein fahren"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Der Schlauchtrupp holt Geräte, baut die Wasserversorgung zur Entnahmestelle auf und unterstützt andere Trupps."
+    },
+    {
+        id: 112,
+        type: "tf",
+        category: "Einheiten",
+        subcategory: "Maschinist",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Maschinist ist Bediener der Feuerlöschkreiselpumpe und aller Aggregate des Fahrzeugs und gehört zur Mannschaft.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Der Maschinist bedient die Technik, fährt das Fahrzeug und unterstützt bei der Entnahme von Geräten."
+    },
+    {
+        id: 113,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Melder",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Aufgabe hat der Melder in der Löschgruppe?",
+        options: ["Übernehmen von Melde- und Beobachtungsaufgabe sowie Unterstützung des Gruppenführers", "Führen des gesamten Zuges", "Hauptsächlich das Bedienen des Verteilers", "Ausschließlich das Verlegen von Schläuchen"],
+        correctAnswers: [0],
+        explanation: "Der Melder überbringt Befehle und Nachrichten und steht dem Gruppenführer direkt zur Seite."
+    },
+    {
+        id: 114,
+        type: "mc",
+        category: "Einheit im Brandeinsatz",
+        subcategory: "Einheitseinteilung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie verständigen sich die Trupps an der Einsatzstelle, wenn kein Sprechfunk genutzt wird oder zusätzlich?",
+        options: ["Durch standardmäßige Handzeichen / mündliche Absprache", "Durch Einsatz von Zurufen", "Durch akustische Signale über Pressluftatmer-Warnpfeife", "Durch Lichtzeichen"],
+        correctAnswers: [0, 1],
+        explanation: "Kommunikation erfolgt über Zuruf, Handzeichen und Funk."
+    },
+    {
+        id: 115,
+        type: "tf",
+        category: "Brandeinsatz",
+        subcategory: "Einheit",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Im Brandeinsatz arbeitet die Gruppe grundsätzlicherweise nach Einheiten auf Befehl des Gruppenführers.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Der Gruppenführer steuert den Einsatzablauf über klar definierte Befehle an die Trupps."
+    },
+    {
+        id: 116,
+        type: "sc",
+        category: "Brandeinsatz",
+        subcategory: "Wasserversorgung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer setzt den B-Verteiler bei der Wasserversorgung im Brandeinsatz?",
+        options: ["Der Wassertrupp", "Der Angriffstrupp", "Der Schlauchtrupp", "Der Maschinist"],
+        correctAnswers: [0],
+        explanation: "Der Wassertrupp setzt den Verteiler an der festgelegten Stelle und kuppelt die Schläuche an."
+    },
+    {
+        id: 117,
+        type: "mc",
+        category: "Brandeinsatz",
+        subcategory: "Rohre",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Reihenfolge gilt für die Vornahme der Rohre beim Erstangriff (Standard)?",
+        options: ["Das 1. Rohr nimmt der Angriffstrupp vor", "Das 2. Rohr nimmt der Wassertrupp vor", "Der Schlauchtrupp nimmt das 3. Rohr vor", "Der Maschinist nimmt das 1. Rohr vor"],
+        correctAnswers: [0, 1],
+        explanation: "Der Angriffstrupp nimmt das erste Rohr vor, der Wassertrupp das zweite."
+    },
+    {
+        id: 118,
+        type: "tf",
+        category: "Brandeinsatz",
+        subcategory: "Einheit",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Angriffstrupp rüstet sich bei Bedarf bereits während der Fahrt oder nach Befehl mit Atemschutz aus.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Das Anlegen von Pressluftatmern erfolgt meist während der Anfahrt, sofern es die Sicherheitsregeln erlauben."
+    },
+    {
+        id: 119,
+        type: "sc",
+        category: "Brandeinsatz",
+        subcategory: "Schlauchtrupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer unterstützt den Wassertrupp bei der Wasserversorgung von der Wasserentnahmestelle zum Fahrzeug?",
+        options: ["Der Schlauchtrupp", "Der Angriffstrupp", "Der Melder", "Der Gruppenführer"],
+        correctAnswers: [0],
+        explanation: "Der Schlauchtrupp unterstützt den Wassertrupp beim Aufbau der Wasserversorgung zur Entnahmestelle."
+    },
+    {
+        id: 120,
+        type: "mc",
+        category: "Technische Hilfeleistung",
+        subcategory: "Grundlagen",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Besonderheiten gelten bei der Einteilung im Hilfeleistungseinsatz nach FwDV 3?",
+        options: ["Die Funktionen (Angriffstrupp, Wassertrupp etc.) behalten ihre Namen, werden aber flexibel auf die technischen Aufgaben verteilt", "Es gibt keine Trupps im Hilfeleistungseinsatz", "Die Einteilung wird völlig abgeschafft", "Jeder macht, was er will"],
+        correctAnswers: [0],
+        explanation: "Das Truppkonzept bleibt erhalten, die Aufgaben orientieren sich jedoch an den technischen Notwendigkeiten (z.B. Absichern, Retten, Geräteeinsatz)."
+    },
+    {
+        id: 121,
+        type: "tf",
+        category: "Hilfeleistung",
+        subcategory: "Aufgaben",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Im Hilfeleistungseinsatz kann der Angriffstrupp Aufgaben der Technischen Hilfe (z.B. Bedienung hydraulischer Rettungssätze) übernehmen.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Ja, die Einheiten werden entsprechend der Lage für technische Hilfeleistungen eingesetzt."
+    },
+    {
+        id: 122,
+        type: "sc",
+        category: "Einheit",
+        subcategory: "Sicherheitsmaßnahmen",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Aufgabe hat der Sicherungstrupp (sofern gestellt oder erforderlich)?",
+        options: ["Sicherung und Evakuierung von eingesetzten Atemschutzgeräteträgern", "Das Bedienen des Radios", "Das Absperren von Parkplätzen", "Das Kochen von Kaffee"],
+        correctAnswers: [0],
+        explanation: "Sicherungstrupps sichern vorgehende Trupps im Atemschutzeinsatz ab."
+    },
+    {
+        id: 123,
+        type: "mc",
+        category: "Befehle",
+        subcategory: "Aufbau",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Aus welchen Teilen besteht ein vollständiger Befehl des Einheitsführers?",
+        options: ["Einheit", "Weg", "Ziel", "Aufgabe (Mittel)"],
+        correctAnswers: [0, 1, 2, 3],
+        explanation: "Der klassische Befehl gliedert sich in Einheit, Weg, Ziel und Auftrag/Mittel."
+    },
+    {
+        id: 124,
+        type: "tf",
+        category: "Befehle",
+        subcategory: "Quittierung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Befehle müssen von der empfangenden Einheit (dem Trupp) verstanden und durch Wiederholung oder kurze Rückmeldung quittiert werden.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Dies verhindert Missverständnisse an der Einsatzstelle."
+    },
+    {
+        id: 125,
+        type: "sc",
+        category: "Fahrzeugaufstellung",
+        subcategory: "Platzierung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie ist das Löschfahrzeug an der Einsatzstelle im Regelfall aufzustellen?",
+        options: ["So, dass der Arbeits- und Gefahrenbereich optimal bedient werden kann und Rettungswege frei bleiben", "Mitten auf der Kreuzung ohne Rücksicht", "Immer genau 500 Meter entfernt", "In der nächsten geschlossenen Garage"],
+        correctAnswers: [0],
+        explanation: "Die Aufstellung muss taktisch sinnvoll, sicher und zugänglich sein."
+    },
+    {
+        id: 126,
+        type: "mc",
+        category: "Brandeinsatz",
+        subcategory: "Bereitstellung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Was bedeutet der Begriff 'Einheit im Einsatz mit Bereitstellung'?",
+        options: ["Die Einheiten rücken an, gehen in Bereitstellung und warten auf konkrete Befehle des Einheitsführers", "Alle Geräte werden auf die Straße geworfen", "Die Mannschaft geht sofort nach Hause", "Der Maschinist schaltet den Motor ab"],
+        correctAnswers: [0],
+        explanation: "Bereitstellung bedeutet das Bereithalten der Trupps und Gerätschaften in sicherer Nähe zur sofortigen Vornahme."
+    },
+    {
+        id: 127,
+        type: "tf",
+        category: "FwDV 3",
+        subcategory: "Begriffe",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Ein 'Verteiler' ist ein rein hydraulisches Instrument und hat keine Absperrfunktion.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Der Verteiler besitzt Absperrorgane (Schieber/Ventile) für jeden Abgang."
+    },
+    {
+        id: 128,
+        type: "sc",
+        category: "Brandeinsatz",
+        subcategory: "Wasserversorgung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer kupplt die Saugleitung an der Pumpe an?",
+        options: ["Der Wassertrupp und Schlauchtrupp (gemeinsam / nach Zuweisung)", "Der Gruppenführer allein", "Der Melder", "Der Maschinist"],
+        correctAnswers: [0],
+        explanation: "Der Aufbau der Saugleitung erfolgt durch Wasser- und Schlauchtrupp unter Mitarbeit des Maschinisten."
+    },
+    {
+        id: 129,
+        type: "mc",
+        category: "Trupp",
+        subcategory: "Zusammenhalt",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Grundregeln gelten für den Trupp im Einsatz?",
+        options: ["Der Trupp bleibt grundsätzlich zusammen", "Der Truppführer führt seinen Trupp und arbeitet mit", "Der Truppmann unterstützt den Truppführer", "Truppmitglieder dürfen sich beliebig im Gebäude verteilen"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Zusammenhalt und gegenseitige Absicherung sind das Fundament des Truppprinzips."
+    },
+    {
+        id: 130,
+        type: "tf",
+        category: "Ausbildung",
+        subcategory: "FwDV 3",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Die FwDV 3 unterscheidet zwischen dem Vorgehen im Brandeinsatz und dem Vorgehen im Hilfeleistungseinsatz.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Die Vorschrift widmet sich beiden Hauptszenarien in separaten Kapiteln bzw. Abschnitten."
+    },
+    {
+        id: 131,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Führung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer ist der direkte Vorgesetzte der Mannschaft in einer Löschgruppe?",
+        options: ["Der Gruppenführer", "Der Oberbürgermeister", "Der Kreisbrandinspektor", "Der Maschinist"],
+        correctAnswers: [0],
+        explanation: "Der Gruppenführer führt seine Gruppe direkt an der Einsatzstelle."
+    },
+    {
+        id: 132,
+        type: "mc",
+        category: "Brandeinsatz",
+        subcategory: "Angriffstrupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Ausrüstung führt der Angriffstrupp im Brandeinsatz standardmäßig mit sich (Beispiele)?",
+        options: ["Verteiler (wird vom Wassertrupp gebracht, aber Angriffstrupp schließt an)", "Strahlrohr und C-Schläuche", "Kleinlöschgeräte oder Spezialwerkzeug nach Auftrag", "Eine Leiter"],
+        correctAnswers: [1, 2],
+        explanation: "Der Angriffstrupp bringt Schläuche und Strahlrohre vor und führt den Angriff durch."
+    },
+    {
+        id: 133,
+        type: "tf",
+        category: "Fahrzeug",
+        subcategory: "Position",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Maschinist darf das Fahrzeug während des Pumpenbetriebs unbesetzt und ohne Sicherung verlassen.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Der Maschinist muss die Pumpe überwachen und darf sie nicht unbeaufsichtigt lassen."
+    },
+    {
+        id: 134,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Staffel",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Trupps stehen in einer Staffel (1/5) zur Verfügung?",
+        options: ["Angriffstrupp und Wassertrupp", "Nur ein Angriffstrupp", "Angriffstrupp, Wassertrupp und Schlauchtrupp", "Gar keine Trupps"],
+        correctAnswers: [0],
+        explanation: "Die Staffel umfasst neben Staffelführer und Maschinist den Angriffstrupp und den Wassertrupp."
+    },
+    {
+        id: 135,
+        type: "mc",
+        category: "Taktik",
+        subcategory: "Einsatzgrundsätze",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Grundregeln gelten für den Befehl und Gehorsam in der Feuerwehr?",
+        options: ["Befehle sind klar und verständlich zu erteilen", "Gefährliche Befehle, die gegen das Gesetz verstoßen, dürfen nicht ausgeführt werden", "Jeder Befehl ist zu befolgen, solange er im Rahmen des Dienstes liegt", "Untergeordnete dürfen Befehle ignorieren"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Disziplin und klare Befehlsstrukturen sind essenziell, ungesetzliche Befehle sind jedoch unzulässig."
+    },
+    {
+        id: 136,
+        type: "tf",
+        category: "Brandeinsatz",
+        subcategory: "Wasserversorgung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Die Wasserversorgung hat im Brandeinsatz oberste Priorität und muss zügig aufgebaut werden.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Ohne gesicherte Wasserversorgung ist ein dauerhafter Löscherfolg gefährdet."
+    },
+    {
+        id: 137,
+        type: "sc",
+        category: "Gerätschaften",
+        subcategory: "Verteiler",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie viele B-Eingänge hat ein Standard-B-Verteiler?",
+        options: ["Genau einen B-Eingang", "Drei B-Eingänge", "Vier C-Eingänge", "Keinen"],
+        correctAnswers: [0],
+        explanation: "Der klassische B-Verteiler hat einen B-Eingang und verzweigt auf drei Abgänge (meist 1x B und 2x C)."
+    },
+    {
+        id: 138,
+        type: "mc",
+        category: "Einheiten",
+        subcategory: "Trupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Pflichten hat der Truppführer?",
+        options: ["Er führt den Trupp im Auftrag des Gruppenführers", "Er achtet auf die Einhaltung der Sicherheitsvorschriften", "Er bedient die Fahrzeugpumpe anstelle des Maschinisten", "Er meldet die Auftragserfüllung an den Gruppenführer"],
+        correctAnswers: [0, 1, 3],
+        explanation: "Der Truppführer führt seinen Trupp eigenverantwortlich im Rahmen des Gruppenbefehls und meldet zurück."
+    },
+    {
+        id: 139,
+        type: "tf",
+        category: "Hilfeleistung",
+        subcategory: "Einsatz",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Bei der technischen Hilfeleistung ist das Absichern der Einsatzstelle eine der ersten Sofortmaßnahmen.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Eigenschutz und Verkehrssicherung haben bei der technischen Hilfe (z.B. Verkehrsunfall) absolute Priorität."
+    },
+    {
+        id: 140,
+        type: "sc",
+        category: "Brandeinsatz",
+        subcategory: "Angriffstrupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer rüstet sich im Brandeinsatz bei der Vornahme des ersten Rohrs als Erster mit Pressluftatmern aus?",
+        options: ["Der Angriffstrupp", "Der Maschinist", "Der Melder", "Der Schlauchtrupp"],
+        correctAnswers: [0],
+        explanation: "Der Angriffstrupp geht typischerweise als Erster unter Atemschutz vor."
+    },
+    {
+        id: 141,
+        type: "mc",
+        category: "Führung",
+        subcategory: "Meldungen",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Rückmeldungen gibt ein Truppführer an den Gruppenführer?",
+        options: ["Auftrag ausgeführt", "Auftrag kann nicht ausgeführt werden (mit Grund)", "Besondere Vorkommnisse / Gefahren", "Das Wetter von morgen"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Rückmeldungen müssen sachlich, präzise und einsatzbezogen sein."
+    },
+    {
+        id: 142,
+        type: "tf",
+        category: "Einheiten",
+        subcategory: "Trupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Ein Trupp darf sich im Gefahrenbereich trennen, solange beide Funkgeräte haben.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Das Truppprinzip verbietet jegliche Trennung im Gefahrenbereich – absolute Unteilbarkeit."
+    },
+    {
+        id: 143,
+        type: "sc",
+        category: "Brandeinsatz",
+        subcategory: "Wasserversorgung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer baut die B-Leitung vom Fahrzeug zum Verteiler auf?",
+        options: ["Der Wassertrupp", "Der Angriffstrupp", "Der Schlauchtrupp", "Der Melder"],
+        correctAnswers: [0],
+        explanation: "Der Wassertrupp verlegt die B-Leitung vom Fahrzeug zum Verteiler."
+    },
+    {
+        id: 144,
+        type: "mc",
+        category: "Brandeinsatz",
+        subcategory: "Schlauchtrupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Aufgaben kann der Schlauchtrupp nach dem Aufbau der Wasserversorgung übernehmen?",
+        options: ["Vornahme von Geräten zur Riegelstellung oder Brandbekämpfung nach Befehl", "Bereitstellen von Ersatzgeräten", "Unterstützung des Wassertrupps", "Fahren des Einsatzleitwagens"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Der Schlauchtrupp ist flexibel für Unterstützung, Riegelstellungen oder Geräteeinsatz einsetzbar."
+    },
+    {
+        id: 145,
+        type: "tf",
+        category: "FwDV 3",
+        subcategory: "Begriffe",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Begriff 'Einheit' bezeichnet in der FwDV 3 ausschließlich eine komplette Feuerwehrbereitschaft auf Landesebene.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Einheiten im Sinne der FwDV 3 sind taktische Einheiten wie Trupp, Staffel, Gruppe und Zug."
+    },
+    {
+        id: 146,
+        type: "sc",
+        category: "Fahrzeug",
+        subcategory: "Maschinist",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wem unter steht der Maschinist an der Einsatzstelle fachlich bei der Pumpenbedienung?",
+        options: ["Dem Einheitsführer (Gruppen- oder Zugführer)", "Dem Angriffstruppführer", "Dem Melder", "Niemandem"],
+        correctAnswers: [0],
+        explanation: "Der Maschinist führt die Befehle des Einheitsführers bezüglich Wasserdruck und Wasserabgabe aus."
+    },
+    {
+        id: 147,
+        type: "mc",
+        category: "Hilfeleistung",
+        subcategory: "Geräte",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Geräte werden im Hilfeleistungseinsatz typischerweise durch die Trupps vorgenommen?",
+        options: ["Hydraulisches Rettungsgerät (Schere / Spreizer)", "Hebekissen", "Brenn- und Trennwerkzeuge", "Kaffeemaschine"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Hydraulikgeräte, Hebekissen und Trennwerkzeuge sind Standard bei der technischen Hilfeleistung."
+    },
+    {
+        id: 148,
+        type: "tf",
+        category: "Brandeinsatz",
+        subcategory: "Angriffstrupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Angriffstrupp darf das Strahlrohr erst nach ausdrücklichem Befehl des Gruppenführers öffnen und Wasser abgeben.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Wassergabe erfolgt grundsätzlich auf Befehl des Einheitsführers, es sei denn, es liegt Gefahr im Verzug vor."
+    },
+    {
+        id: 149,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Melder",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Auf welchem Fahrzeug sitzt der Melder in einer genormten Löschgruppe (1/8) primär?",
+        options: ["Auf dem Löschgruppenfahrzeug (LF)", "Auf einem separaten Polizeiwagen", "Im Rettungswagen", "Gar auf keinem"],
+        correctAnswers: [0],
+        explanation: "Der Melder gehört zur festen Besatzung des Löschgruppenfahrzeugs."
+    },
+    {
+        id: 150,
+        type: "mc",
+        category: "Taktik",
+        subcategory: "Einheit",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Grundregeln gelten für den Aufbau der Wasserversorgung bei offenem Gewässer?",
+        options: ["Saugleitung kuppeln und zu Wasser lassen", "Saugkorb mit Leine sichern", "Tragkraftspritze oder Fahrzeugpumpe anschließen", "Einfach einen Gartenschlauch in den Teich werfen"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Offene Gewässer erfordern eine korrekt gekuppelte Saugleitung, Saugkorb und Sicherungsleinen."
+    },
+    {
+        id: 151,
+        type: "sc",
+        category: "Grundlagen",
+        subcategory: "Zusammensetzung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Aus wie vielen Personen besteht ein Trupp minimal und maximal?",
+        options: ["Aus genau 2 Personen", "Aus 3 bis 5 Personen", "Aus 1 Person", "Aus 9 Personen"],
+        correctAnswers: [0],
+        explanation: "Ein Trupp besteht stets aus exakt 2 Personen (Führer und Mann)."
+    },
+    {
+        id: 152,
+        type: "tf",
+        category: "Einheiten",
+        subcategory: "Staffel",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Eine Staffel kann ohne Maschinist ausrücken und voll handlungsfähig sein.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Der Maschinist ist unverzichtbarer Bestandteil jeder Staffel- und Gruppenbesatzung zur Bedienung von Fahrzeug und Pumpe."
+    },
+    {
+        id: 153,
+        type: "sc",
+        category: "Brandeinsatz",
+        subcategory: "Verteiler",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer bedient den Verteiler während des Einsatzes im Regelfall?",
+        options: ["Der Wassertruppmann (unter Aufsicht / nach Anweisung)", "Der Angriffstruppführer", "Der Zugführer", "Der Maschinist"],
+        correctAnswers: [0],
+        explanation: "Der Wassertrupp bedient den Verteiler (Öffnen/Schließen der Abgänge nach Befehl)."
+    },
+    {
+        id: 154,
+        type: "mc",
+        category: "Befehle",
+        subcategory: "Arten",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Befehlsarten unterscheidet die FwDV 3 grundsätzlich hinsichtlich des Umfangs?",
+        options: ["Einheitsbefehle", "Unterbefehle", "Einzelbefehle", "Geheimbefehle"],
+        correctAnswers: [0, 2],
+        explanation: "Der Einheitsführer erteilt Befehle als Einheitsbefehl an die gesamte Einheit oder als Einzelbefehl an bestimmte Trupps."
+    },
+    {
+        id: 155,
+        type: "tf",
+        category: "Brandeinsatz",
+        subcategory: "Trupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Angriffstrupp darf im Innenangriff ohne Funkgerät und ohne Sichtkontakt zum Truppführer agieren.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Im Innenangriff ist äußerste Vorsicht geboten; der Trupp muss zusammenbleiben und die Kommunikation sicherstellen."
+    },
+    {
+        id: 156,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Zug",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer führt den Löschzug im Einsatz?",
+        options: ["Der Zugführer", "Der Gruppenführer des ersten Fahrzeugs", "Der Maschinist", "Der älteste Feuerwehrmann"],
+        correctAnswers: [0],
+        explanation: "Die Führungskraft für einen Zug ist der Zugführer."
+    },
+    {
+        id: 157,
+        type: "mc",
+        category: "Gerätschaften",
+        subcategory: "Einsatz",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Aufgaben übernimmt der Schlauchtrupp bei einer Vornahme über Steckleiter?",
+        options: ["Unterstützung beim In-Stellung-Bringen der Steckleiter", "Sichern der Leiter", "Zubringen von Geräten nach Befehl", "Fahren des Tanklöschfahrzeugs"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Der Schlauchtrupp unterstützt maßgeblich bei tragbaren Leitern und Gerätenachschub."
+    },
+    {
+        id: 158,
+        type: "tf",
+        category: "Sicherheit",
+        subcategory: "Unfallverhütung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Jedes Mitglied einer taktischen Einheit ist verpflichtet, Sicherheitsmängel oder Gefahren sofort zu melden.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Eigenschutz hat oberste Priorität; Gefahren müssen umgehend gemeldet werden."
+    },
+    {
+        id: 159,
+        type: "sc",
+        category: "Brandeinsatz",
+        subcategory: "Rohre",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wem wird das erste Rohr im Brandeinsatz zugeteilt?",
+        options: ["Dem Angriffstrupp", "Dem Wassertrupp", "Dem Schlauchtrupp", "Dem Melder"],
+        correctAnswers: [0],
+        explanation: "Der Angriffstrupp nimmt traditionell das erste Rohr vor."
+    },
+    {
+        id: 160,
+        type: "mc",
+        category: "Hilfeleistung",
+        subcategory: "Abmarsch",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Punkte gehören zur Vorbereitung eines technischen Hilfeleistungseinsatzes nach FwDV 3?",
+        options: ["Absichern der Einsatzstelle gegen fließenden Verkehr", "Bereitstellen von Rettungsgeräten und Brandschutz", "Erkunden der Lage durch den Einheitsführer", "Sofortiges Verlassen der Einsatzstelle"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Absicherung, Brandschutzsicherung und Gerätestellung sind elementar."
+    },
+    {
+        id: 161,
+        type: "tf",
+        category: "Einheiten",
+        subcategory: "Trupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Truppführer ist für die Durchführung des ihm erteilten Auftrags innerhalb seines Trupps verantwortlich.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Der Truppführer trägt die Verantwortung für seinen Trupp und die Ausführung des Auftrags."
+    },
+    {
+        id: 162,
+        type: "sc",
+        category: "Brandeinsatz",
+        subcategory: "Wasserversorgung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer baut die Verbindung vom Hydranten zum Fahrzeug (bzw. zur Pumpe) auf?",
+        options: ["Der Wassertrupp (oder Schlauchtrupp je nach Einteilung/Fahrzeug)", "Der Angriffstrupp", "Der Maschinist allein", "Der Melder"],
+        correctAnswers: [0],
+        explanation: "Die Wasserversorgung ab Hydrant/Entnahmestelle wird primär durch Wasser- und Schlauchtrupp realisiert."
+    },
+    {
+        id: 163,
+        type: "mc",
+        category: "Führung",
+        subcategory: "Befehl",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Was enthält der Bestandteil 'Weg' in einem vollständigen Befehl?",
+        options: ["Den genauen Lauf- oder Fahrweg bzw. den Zugang zum Einsatzort", "Die Einheit, die den Befehl ausführt", "Das zu verwendende Material", "Den genauen Zeitpunkt des Feierabends"],
+        correctAnswers: [0],
+        explanation: "Der 'Weg' beschreibt das Vorgehen oder den Weg zum Ziel (z.B. 'über Steckleiter ins 1. Obergeschoss')."
+    },
+    {
+        id: 164,
+        type: "tf",
+        category: "Brandeinsatz",
+        subcategory: "Einheit",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Gruppenführer arbeitet im Brandeinsatz direkt an der vordersten Front mit dem Strahlrohr und lässt die Gruppe allein zurück.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Der Gruppenführer führt, koordiniert und behält die Übersicht; er bindet sich nicht selbst durch das Bedienen eines einzelnen Rohrs."
+    },
+    {
+        id: 165,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Gruppe",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie viele Personen bilden die Mannschaft einer Löschgruppe (ohne Gruppenführer)?",
+        options: ["8 Personen", "5 Personen", "2 Personen", "9 Personen"],
+        correctAnswers: [0],
+        explanation: "Eine Gruppe besteht aus 1 Führer und 8 Mannschaftsmitgliedern."
+    },
+    {
+        id: 166,
+        type: "mc",
+        category: "Brandeinsatz",
+        subcategory: "Schlauchtrupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Aufgaben hat der Schlauchtrupp bei einer Brandbekämpfung im Innenangriff?",
+        options: ["Unterstützung des Angriffstrupps (z.B. Schlauchreserve nachziehen)", "Übernahme von Sicherungs- oder Kontrollaufgaben", "Vorbereitung weiterer Trupps", "Bedienen des Tanklöschfahrzeugs"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Der Schlauchtrupp unterstützt den Angriffstrupp beim Schlauchnachziehen und sichert ab."
+    },
+    {
+        id: 167,
+        type: "tf",
+        category: "FwDV 3",
+        subcategory: "Grundlagen",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Die FwDV 3 gilt bundeseinheitlich für die Feuerwehren in Deutschland.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Die Feuerwehr-Dienstvorschriften (FwDV) sind bundesweit harmonisierte Standards."
+    },
+    {
+        id: 168,
+        type: "sc",
+        category: "Brandeinsatz",
+        subcategory: "Wasserversorgung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer schließt die B-Leitung am Verteiler an?",
+        options: ["Der Wassertrupp", "Der Angriffstrupp", "Der Schlauchtrupp", "Der Maschinist"],
+        correctAnswers: [0],
+        explanation: "Der Wassertrupp bringt den Verteiler und schließt die Zuleitung an."
+    },
+    {
+        id: 169,
+        type: "mc",
+        category: "Führung",
+        subcategory: "Kommunikation",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Grundregeln gelten für den Sprechfunkverkehr im Rahmen der FwDV 3?",
+        options: ["Kurz und präzise sprechen", "Erst denken, dann sprechen", "Funkdisziplin einhalten", "Lange Geschichten erzählen"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Funkverkehr muss kurz, klar und diszipliniert ablaufen."
+    },
+    {
+        id: 170,
+        type: "tf",
+        category: "Hilfeleistung",
+        subcategory: "Trupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Im Hilfeleistungseinsatz gibt es keine festen Truppaufgaben, weshalb die Trupps beliebig aufgelöst werden dürfen.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Das Truppprinzip bleibt erhalten; die Aufgaben werden lediglich lageangepasst zugewiesen."
+    },
+    {
+        id: 171,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Trupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer ist in einem Trupp weisungsbefugt?",
+        options: ["Der Truppführer", "Der Truppmann", "Jeder beliebige Zuschauer", "Der Maschinist"],
+        correctAnswers: [0],
+        explanation: "Der Truppführer leitet seinen Trupp."
+    },
+    {
+        id: 172,
+        type: "mc",
+        category: "Brandeinsatz",
+        subcategory: "Rohre",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Aufgaben hat das zweite Rohr im Brandeinsatz (vorgenommen durch den Wassertrupp)?",
+        options: ["Brandbekämpfung unterstützen", "Riegelstellung zur Verhinderung der Brandausbreitung", "Schutz gefährdeter Bereiche", "Wasser aus dem Fenster spritzen"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Das zweite Rohr dient dem Angriff, der Riegelstellung oder dem Schutz."
+    },
+    {
+        id: 173,
+        type: "tf",
+        category: "Brandeinsatz",
+        subcategory: "Einheit",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Melder darf selbstständig eigenmächtige Einsätze starten, ohne den Gruppenführer zu informieren.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Der Melder untersteht dem Gruppenführer und arbeitet auftragsgebunden."
+    },
+    {
+        id: 174,
+        type: "sc",
+        category: "Fahrzeug",
+        subcategory: "Besatzung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Mindestbesatzung hat ein Tragkraftspritzenfahrzeug (TSF) nach Standard?",
+        options: ["Eine Staffel (1/5)", "Eine Gruppe (1/8)", "Ein Zug", "Nur 1 Person"],
+        correctAnswers: [0],
+        explanation: "Ein TSF ist typischerweise für eine Staffel (1/5) besetzt."
+    },
+    {
+        id: 175,
+        type: "mc",
+        category: "Brandeinsatz",
+        subcategory: "Bereitstellung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Was gehört zur 'Bereitstellung' im Brandeinsatz?",
+        options: ["Bereitstellen von Geräten am Verteiler", "Bereithalten der Trupps in Sicherheit", "Vorbereiten von Atemschutzgeräten", "Sofortiges Heimfahren"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Bereitstellung umfasst Material und Personal in sofortiger Abrufbereitschaft."
+    },
+    {
+        id: 176,
+        type: "tf",
+        category: "Sicherheit",
+        subcategory: "Persönliche Schutzausrüstung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Die persönliche Schutzausrüstung muss vor jedem Einsatz auf Vollständigkeit und korrekten Sitz überprüft werden.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "PSA schützt das Leben der Einsatzkräfte und muss einwandfrei sitzen."
+    },
+    {
+        id: 177,
+        type: "sc",
+        category: "Brandeinsatz",
+        subcategory: "Angriffstrupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer bestimmt das Vorgehen des Angriffstrupps im Innenangriff?",
+        options: ["Der Einheitsführer (Gruppenführer) durch den Befehl", "Der Angriffstruppführer nach eigenem Gutdünken", "Der Maschinist", "Der verunfallte Patient"],
+        correctAnswers: [0],
+        explanation: "Der Gruppenführer gibt den taktischen Rahmen und den konkreten Auftrag vor."
+    },
+    {
+        id: 178,
+        type: "mc",
+        category: "Führung",
+        subcategory: "Befehle",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Merkmale zeichnen einen guten Feuerwehrbefehl aus?",
+        options: ["Eindeutigkeit", "Kurz gefasst", "Verständlichkeit", "Unvollständigkeit zur Überraschung"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Befehle müssen klar, kurz und unmissverständlich sein."
+    },
+    {
+        id: 179,
+        type: "tf",
+        category: "Einheiten",
+        subcategory: "Trupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Truppmann darf dem Truppführer widersprechen, wenn dieser einen sicherheitsgefährdenden Befehl erteilt.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Bei akuter Gefahr oder offensichtlichen Sicherheitsverstößen ist Einspruch / Aufklärung zwingend geboten."
+    },
+    {
+        id: 180,
+        type: "sc",
+        category: "Brandeinsatz",
+        subcategory: "Wasserversorgung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Aufgabe hat der Maschinist bei der Wasserversorgung aus Hydranten?",
+        options: ["Standrohr setzen lassen bzw. Pumpe vorbereiten und Eingangsdruck überwachen", "Selbst zum Hydranten rennen und dort bleiben", "Den Schlauch alleine tragen", "Das Standrohr bewachen"],
+        correctAnswers: [0],
+        explanation: "Der Maschinist bedient die Pumpe und steuert die Wasserabgabe."
+    },
+    {
+        id: 181,
+        type: "mc",
+        category: "Hilfeleistung",
+        subcategory: "Trupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie arbeiten die Trupps bei der technischen Hilfeleistung zusammen?",
+        options: ["Hand in Hand nach Zuweisung durch den Gruppenführer", "Völlig unkoordiniert", "Jeder Trupp rettet für sich", "Nur der Gruppenführer arbeitet allein"],
+        correctAnswers: [0],
+        explanation: "Koordination und strukturierte Zusammenarbeit sind auch in der Hilfeleistung der Schlüssel."
+    },
+    {
+        id: 182,
+        type: "tf",
+        category: "Brandeinsatz",
+        subcategory: "Einheit",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Schlauchtrupp kann im Brandeinsatz auch als Sicherheitstrupp eingesetzt werden.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Ja, je nach Personalstärke und Lage übernimmt der Schlauchtrupp Sicherungsaufgaben."
+    },
+    {
+        id: 183,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Gruppe",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie viele Trupps hat eine reguläre Löschgruppe?",
+        options: ["Drei Trupps (Angriffs-, Wasser-, Schlauchtrupp)", "Einen Trupp", "Zehn Trupps", "Keinen Trupp"],
+        correctAnswers: [0],
+        explanation: "Eine Löschgruppe gliedert sich in drei Trupps."
+    },
+    {
+        id: 184,
+        type: "mc",
+        category: "Brandeinsatz",
+        subcategory: "Angriffstrupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Aufgaben hat der Angriffstrupp nach Beendigung der Brandbekämpfung?",
+        options: ["Nachlöscharbeiten durchführen", "Glutnester suchen", "Gerätschaften abbauen und aufrüsten", "Sofort abreisen"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Nachlöscharbeiten und Rückbau gehören zum Abschluss des Einsatzes."
+    },
+    {
+        id: 185,
+        type: "tf",
+        category: "FwDV 3",
+        subcategory: "Begriffe",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Ein 'Einheitsführer' ist immer ein Berufsfeuerwehrmann.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Einheitsführer kann sowohl in Freiwilligen Feuerwehren als auch bei Berufs- oder Werkfeuerwehren entsprechend ausgebildetes Führungspersonal sein."
+    },
+    {
+        id: 186,
+        type: "sc",
+        category: "Brandeinsatz",
+        subcategory: "Verteiler",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welchen Zweck erfüllt der Verteiler im Löschangriff?",
+        options: ["Aufteilung einer B-Leitung auf mehrere C-Abgänge für die Rohre", "Erhöhung des Wasserdrucks auf 100 bar", "Mischen von Schaum", "Filmen des Brandes"],
+        correctAnswers: [0],
+        explanation: "Der Verteiler teilt den Wasserstrom von der Zuleitung auf die Angriffstrupps auf."
+    },
+    {
+        id: 187,
+        type: "mc",
+        category: "Führung",
+        subcategory: "Befehle",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Angaben muss ein vollständiger Einheitsbefehl mindestens enthalten (nach FwDV 3)?",
+        options: ["Einheit", "Weg", "Ziel", "Mittelsatz / Auftrag"],
+        correctAnswers: [0, 1, 2, 3],
+        explanation: "Das Schema Einheit, Weg, Ziel, Mittel ist verbindlich."
+    },
+    {
+        id: 188,
+        type: "tf",
+        category: "Sicherheit",
+        subcategory: "Trupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Truppführer muss jederzeit wissen, wo sich sein Truppmann befindet.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Der Zusammenhalt im Trupp ist eine unverzichtbare Sicherheitsvorgabe."
+    },
+    {
+        id: 189,
+        type: "sc",
+        category: "Brandeinsatz",
+        subcategory: "Wassertrupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer bringt den Verteiler zum Einsatzort?",
+        options: ["Der Wassertrupp", "Der Angriffstrupp", "Der Maschinist", "Der Melder"],
+        correctAnswers: [0],
+        explanation: "Das Mitbringen des Verteilers gehört zu den Standardaufgaben des Wassertrupps."
+    },
+    {
+        id: 190,
+        type: "mc",
+        category: "Hilfeleistung",
+        subcategory: "Einsatz",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Maßnahmen sind bei einem Verkehrsunfall mit eingeklemmter Person sofort zu treffen?",
+        options: ["Fahrzeug gegen Wegrollen und Brand sichern", "Verkehr absichern", "Zugang zum Patienten schaffen (Notfallrettung)", "Autos auf dem Schrottplatz verkaufen"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Sicherung, Brandschutz und Erstzugang sind elementare Schritte."
+    },
+    {
+        id: 191,
+        type: "tf",
+        category: "Brandeinsatz",
+        subcategory: "Einheit",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Der Einheitsführer darf im Einsatz eigenmächtig den Funkkanal wechseln, ohne die Leitstelle oder den Zugführer zu informieren.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "Funkkanalwechsel müssen koordiniert und befohlen sein, um die Kommunikation nicht zu reißen."
+    },
+    {
+        id: 192,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Trupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer übernimmt im Abwesenheitsfall des Truppführers (z.B. Ausfall) das Kommando im Trupp?",
+        options: ["Der Truppmann", "Niemand", "Der Maschinist", "Ein zufälliger Passant"],
+        correctAnswers: [0],
+        explanation: "Der Truppmann rückt in der Regel nach oder übernimmt die Führung, um die Handlungsfähigkeit zu sichern."
+    },
+    {
+        id: 193,
+        type: "mc",
+        category: "Brandeinsatz",
+        subcategory: "Schlauchtrupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Gerätschaften bringt der Schlauchtrupp typischerweise im Erstangriff mit vor?",
+        options: ["Verteiler und Zubehör (falls nicht Wassertrupp)", "Tragbare Leitern nach Befehl", "Zusätzliche Schläuche / Werkzeug", "Die Fahrzeugpumpe"],
+        correctAnswers: [1, 2],
+        explanation: "Der Schlauchtrupp transportiert Leitern, Zusatzschläuche und Werkzeuge zum Einsatzort."
+    },
+    {
+        id: 194,
+        type: "tf",
+        category: "FwDV 3",
+        subcategory: "Grundlagen",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Die FwDV 3 beschreibt die Zusammenarbeit und Handhabung von taktischen Einheiten im Lösch- und Hilfeleistungseinsatz detailliert.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Dies ist der exakte Zweck und Kerninhalt der FwDV 3."
+    },
+    {
+        id: 195,
+        type: "sc",
+        category: "Brandeinsatz",
+        subcategory: "Wasserversorgung",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wer kupplt die Saugleitung an der Tragkraftspritze oder Pumpe an?",
+        options: ["Wasser- und Schlauchtrupp gemeinsam unter Mitwirkung des Maschinisten", "Nur der Melder", "Der Gruppenführer", "Niemand"],
+        correctAnswers: [0],
+        explanation: "Das Kuppeln der Saugleitung erfordert Teamwork von Wasser- und Schlauchtrupp."
+    },
+    {
+        id: 196,
+        type: "mc",
+        category: "Führung",
+        subcategory: "Meldungen",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Kriterien muss eine gute Lagemeldung im Einsatz erfüllen?",
+        options: ["Präzise", "Vollständig (Wer, Wo, Was)", "Kurz", "Unverständlich für andere"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Lagemeldungen müssen dem Einheitsführer klare Einblicke geben."
+    },
+    {
+        id: 197,
+        type: "tf",
+        category: "Sicherheit",
+        subcategory: "Einsatz",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Bei extremen Wetterbedingungen (z.B. starker Sturm) dürfen Einheiten ohne Absicherung und ohne Helm im Gefahrenbereich arbeiten.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [1],
+        explanation: "PSA und Eigenschutz gelten uneingeschränkt immer und bei jedem Wetter."
+    },
+    {
+        id: 198,
+        type: "sc",
+        category: "Einheiten",
+        subcategory: "Gruppe",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie viele Personen umfasst eine Löschgruppe insgesamt (Führer + Mannschaft)?",
+        options: ["9 Personen (1/8)", "6 Personen (1/5)", "3 Personen (1/2)", "12 Personen"],
+        correctAnswers: [0],
+        explanation: "Die Gruppenstärke beträgt 9 Personen."
+    },
+    {
+        id: 199,
+        type: "mc",
+        category: "Brandeinsatz",
+        subcategory: "Angriffstrupp",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Welche Aufgaben hat der Angriffstrupp im Brandeinsatz?",
+        options: ["Menschenrettung als oberste Priorität", "Vornahme des ersten Rohrs", "Vordringen in den Brandraum", "Kaffeekochen im Fahrzeug"],
+        correctAnswers: [0, 1, 2],
+        explanation: "Menschenrettung und Brandbekämpfung mit dem ersten Rohr sind Kernaufgaben des Angriffstrupps."
+    },
+    {
+        id: 200,
+        type: "tf",
+        category: "Abschluss",
+        subcategory: "Einsatzende",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Nach Rückkehr von der Einsatzstelle ist der Einsatz erst dann beendet, wenn die Einsatzbereitschaft (Gerätepflege, Aufrüsten) wiederhergestellt ist.",
+        options: ["Richtig", "Falsch"],
+        correctAnswers: [0],
+        explanation: "Die Wiederherstellung der Einsatzbereitschaft gehört fest zum Ablauf nach FwDV 3 / Dienstvorschriften."
+    },
+    {
+        id: 201,
+        type: "sc",
+        category: "Gerätschaften",
+        subcategory: "Leinen",
+        minRank: 1,
+        minCatPoints: 0,
+        question: "Wie lang ist ein Feuerwehrleine?",
+        options: ["15m", "30m", "100m", "75m"],
+        correctAnswers: [1],
+        explanation: "Eine Staffel besteht aus Staffelführer, Maschinist, Angriffstrupp und Wassertrupp (insgesamt 6 Personen)."
+    },
+    {
+        id: 202,
+        type: "sc",
+        category: "Schläuche",
+        subcategory: "Größen",
+        minRank: 1,
+        minCatPoints: 200,
+        question: "Welchen Innendurchmesser hat ein herkömmlicher C-Druckschlauch?",
+        options: ["52 mm", "75 mm", "110 mm", "25 mm"],
+        correctAnswers: [0],
+        explanation: "Ein C-Schlauch hat einen Innendurchmesser von 52mm."
+    },
+    {
+        id: 203,
+        type: "sc",
+        category: "Schläuche",
+        subcategory: "Größen",
+        minRank: 1,
+        minCatPoints: 200,
+        question: "Welchen Innendurchmesser hat ein herkömmlicher A-Druckschlauch?",
+        options: ["52 mm", "75 mm", "110 mm", "25 mm"],
+        correctAnswers: [2],
+        explanation: "Ein B-Schlauch hat einen Innendurchmesser von 75 mm, ein C-Schlauch 42 mm."
+    },
+    {
+        id: 204,
+        type: "sc",
+        category: "Schläuche",
+        subcategory: "Größen",
+        minRank: 1,
+        minCatPoints: 200,
+        question: "Welchen Innendurchmesser hat ein herkömmlicher D-Druckschlauch?",
+        options: ["52 mm", "75 mm", "110 mm", "25 mm"],
+        correctAnswers: [3],
+        explanation: "Ein B-Schlauch hat einen Innendurchmesser von 75 mm, ein C-Schlauch 42 mm."
+    },
+];
+
+        let ranks = [], categories = [], questions = [];
+        let score = 0, currentRankObj = null;
+        let selectedFirst = null;
+        let matchingPairsState = [];
+
+        let solvedQuestionIds = new Set();
+        let seenQuestionIds = new Set();
+        let errorTracker = {}; 
+        let activeQueue = [];
+        let repeatQueue = [];
+        let currentQuestion = null;
+        let selectedCategory = null;
+        let selectedSubcategory = null;
+
+        window.onload = function() {
+            loadProgress();
+            loadRanks();
+            loadCategories();
+            loadPool();
+            updateStats(false);
+            updateFormFields();
+            renderCategoryPanels();
+
+            window.addEventListener('resize', () => {
+                if (currentQuestion && currentQuestion.type === 'matching') drawMatchingLines();
+                if (currentQuestion && currentQuestion.type === 'free_matching') drawFreeMatchingLines();
+            });
+        };
+
+        function loadProgress() {
+            const storedSolved = localStorage.getItem('fw_solved_questions');
+            if (storedSolved) solvedQuestionIds = new Set(JSON.parse(storedSolved));
+            const storedSeen = localStorage.getItem('fw_seen_questions');
+            if (storedSeen) seenQuestionIds = new Set(JSON.parse(storedSeen));
+            const storedScore = localStorage.getItem('fw_user_score');
+            if (storedScore) score = parseInt(storedScore, 10) || 0;
+            const storedErrors = localStorage.getItem('fw_error_tracker');
+            if (storedErrors) errorTracker = JSON.parse(storedErrors);
+        }
+
+        function saveProgress() {
+            localStorage.setItem('fw_solved_questions', JSON.stringify(Array.from(solvedQuestionIds)));
+            localStorage.setItem('fw_seen_questions', JSON.stringify(Array.from(seenQuestionIds)));
+            localStorage.setItem('fw_user_score', score.toString());
+            localStorage.setItem('fw_error_tracker', JSON.stringify(errorTracker));
+        }
+
+        function getCategoryPoints(cat) {
+            let catScore = 0;
+            questions.forEach(q => {
+                if (q.category === cat && solvedQuestionIds.has(q.id)) {
+                    catScore += 10;
+                }
+            });
+            return catScore;
+        }
+
+        function checkCategoryUnlocks(previousScore, newScore) {
+            const newlyUnlocked = questions.filter(q => {
+                const reqCatPts = q.minCatPoints || 0;
+                return reqCatPts > previousScore && reqCatPts <= newScore;
+            });
+
+            if (newlyUnlocked.length > 0) {
+                setTimeout(() => {
+                    alert(`🎉 Super! Du hast ${newlyUnlocked.length} neue Frage(n) durch deine erreichte Punktzahl freigeschaltet!`);
+                }, 300);
+            }
+        }
+
+        /* ADMIN MODAL SYSTEM */
+        function openAdminModal() {
+            document.getElementById('admin-modal').classList.remove('hidden');
+            document.getElementById('admin-login-step').classList.remove('hidden');
+            document.getElementById('admin-panel-step').classList.add('hidden');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        }
+
+        function verifyAdminPin() {
+            if (document.getElementById('admin-pin-input').value === '112') {
+                document.getElementById('admin-login-step').classList.add('hidden');
+                document.getElementById('admin-panel-step').classList.remove('hidden');
+            } else {
+                alert("Falsche PIN!");
+            }
+        }
+
+        function switchAdminTab(tab) {
+            document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            document.getElementById('admin-tab-questions').classList.add('hidden');
+            document.getElementById('admin-tab-categories').classList.add('hidden');
+            document.getElementById('admin-tab-ranks').classList.add('hidden');
+
+            document.getElementById(`admin-tab-${tab}`).classList.remove('hidden');
+        }
+
+        /* RÄNGE MANAGEMENT */
+        function loadRanks() {
+            const stored = localStorage.getItem('fw_ranks');
+            ranks = stored ? JSON.parse(stored) : [...defaultRanks];
+            ranks.sort((a,b) => a.points - b.points);
+            renderRankList();
+            renderRankDropdown();
+        }
+
+        function saveRanks() {
+            ranks.sort((a,b) => a.points - b.points);
+            localStorage.setItem('fw_ranks', JSON.stringify(ranks));
+            renderRankList();
+            renderRankDropdown();
+            updateStats(false);
+        }
+
+        function addRank(e) {
+            e.preventDefault();
+            ranks.push({ id: Date.now(), name: document.getElementById('new-rank-name').value, points: parseInt(document.getElementById('new-rank-points').value) });
+            saveRanks();
+            document.getElementById('new-rank-name').value = '';
+            document.getElementById('new-rank-points').value = '';
+        }
+
+        function deleteRank(id) {
+            if(ranks.length <= 1) return alert("Mindestens ein Rang erforderlich!");
+            ranks = ranks.filter(r => r.id !== id);
+            saveRanks();
+        }
+
+        function renderRankList() {
+            const list = document.getElementById('ranks-list');
+            list.innerHTML = '';
+            ranks.forEach(r => {
+                list.innerHTML += `<div class="item-card"><span><strong>${r.name}</strong> (${r.points} XP)</span><button class="btn btn-secondary" onclick="deleteRank(${r.id})" style="padding:4px 8px; font-size:12px;"><i class="fa-solid fa-trash"></i></button></div>`;
+            });
+        }
+
+        function renderRankDropdown() {
+            const sel = document.getElementById('form-rank');
+            sel.innerHTML = '';
+            ranks.forEach(r => { sel.innerHTML += `<option value="${r.id}">${r.name} (${r.points} XP)</option>`; });
+        }
+
+        /* KATEGORIEN & UNTERKATEGORIEN MANAGEMENT */
+        function loadCategories() {
+            const stored = localStorage.getItem('fw_categories_obj');
+            categoriesObj = stored ? JSON.parse(stored) : categoriesObj;
+            categories = categoriesObj.map(c => c.name);
+            renderCategoryDropdowns();
+            renderCategoryList();
+        }
+
+        function saveCategories() {
+            localStorage.setItem('fw_categories_obj', JSON.stringify(categoriesObj));
+            categories = categoriesObj.map(c => c.name);
+            renderCategoryDropdowns();
+            renderCategoryList();
+            renderCategoryPanels();
+        }
+
+        function addCategory(e) {
+            e.preventDefault();
+            const name = document.getElementById('new-category-name').value.trim();
+            if (name && !categoriesObj.some(c => c.name === name)) {
+                categoriesObj.push({ name: name, subcats: [] });
+                saveCategories();
+                document.getElementById('new-category-name').value = '';
+            }
+        }
+
+        function addSubcategory(e) {
+            e.preventDefault();
+            const mainCatName = document.getElementById('subcat-main-select').value;
+            const subName = document.getElementById('new-subcat-name').value.trim();
+
+            const cat = categoriesObj.find(c => c.name === mainCatName);
+            if (cat && subName && !cat.subcats.includes(subName)) {
+                cat.subcats.push(subName);
+                saveCategories();
+                document.getElementById('new-subcat-name').value = '';
+            }
+        }
+
+        function deleteCategory(name) {
+            categoriesObj = categoriesObj.filter(c => c.name !== name);
+            saveCategories();
+        }
+
+        function renderCategoryDropdowns() {
+            const formSelect = document.getElementById('form-category');
+            const mainSelect = document.getElementById('subcat-main-select');
+            
+            formSelect.innerHTML = '';
+            mainSelect.innerHTML = '';
+
+            categoriesObj.forEach(cat => {
+                formSelect.innerHTML += `<option value="${cat.name}">${cat.name}</option>`;
+                mainSelect.innerHTML += `<option value="${cat.name}">${cat.name}</option>`;
+            });
+
+            updateSubcatDropdown();
+        }
+
+        function updateSubcatDropdown() {
+            const mainCat = document.getElementById('form-category').value;
+            const subSelect = document.getElementById('form-subcategory');
+            subSelect.innerHTML = '<option value="">-- Keine Unterkategorie --</option>';
+
+            const cat = categoriesObj.find(c => c.name === mainCat);
+            if (cat && cat.subcats) {
+                cat.subcats.forEach(sub => {
+                    subSelect.innerHTML += `<option value="${sub}">${sub}</option>`;
+                });
+            }
+        }
+
+        function renderCategoryList() {
+            const list = document.getElementById('category-list');
+            list.innerHTML = '';
+            categoriesObj.forEach(cat => {
+                const subsHtml = cat.subcats.length > 0 ? `<br><small style="color:var(--text-muted)">Unterkategorien: ${cat.subcats.join(', ')}</small>` : '';
+                list.innerHTML += `<div class="item-card"><span><strong>${cat.name}</strong>${subsHtml}</span><button class="btn btn-secondary" onclick="deleteCategory('${cat.name}')" style="padding:4px 8px; font-size:12px;"><i class="fa-solid fa-trash"></i></button></div>`;
+            });
+        }
+
+        /* FRAGEN POOL MANAGEMENT */
+        function loadPool() {
+            const stored = localStorage.getItem('fw_custom_questions');
+            const custom = stored ? JSON.parse(stored) : [];
+            questions = [...defaultQuestions, ...custom];
+            document.getElementById('custom-count').innerText = questions.length;
+            renderCustomList();
+        }
+
+        function updateStats(checkLevelUp = true) {
+            document.getElementById('user-score-display').innerText = score + ' XP';
+            ranks.sort((a,b) => a.points - b.points);
+
+            let currentRank = ranks[0];
+            let nextRank = ranks[ranks.length - 1];
+
+            for (let i = 0; i < ranks.length; i++) {
+                if (score >= ranks[i].points) {
+                    currentRank = ranks[i];
+                    nextRank = ranks[i+1] || ranks[i];
+                }
+            }
+
+            if (checkLevelUp && currentRankObj && currentRank.id !== currentRankObj.id && currentRank.points > currentRankObj.points) {
+                const newlyUnlockedCount = questions.filter(q => q.minRank === currentRank.id).length;
+                document.getElementById('modal-rank-name').innerText = currentRank.name;
+                const unlockInfoEl = document.getElementById('modal-unlocked-info');
+                
+                if (newlyUnlockedCount > 0) {
+                    document.getElementById('unlocked-count').innerText = newlyUnlockedCount;
+                    unlockInfoEl.classList.remove('hidden');
+                } else {
+                    unlockInfoEl.classList.add('hidden');
+                }
+
+                document.getElementById('rank-modal').classList.remove('hidden');
+            }
+            currentRankObj = currentRank;
+
+            document.getElementById('rank-display-title').innerText = currentRank.name;
+            document.getElementById('next-rank-title').innerText = nextRank.name;
+
+            let progressPct = nextRank.points > currentRank.points ? 
+                ((score - currentRank.points) / (nextRank.points - currentRank.points)) * 100 : 100;
+            
+            document.getElementById('rank-progress-text').innerText = `${score} / ${nextRank.points} XP`;
+            document.getElementById('rank-progress-fill').style.width = `${Math.min(100, Math.max(0, progressPct))}%`;
+        }
+
+        function getCategoryStats() {
+            let stats = { 
+                "all": { completed: 0, total: 0 },
+                "Fehler": { completed: 0, total: 0 }
+            };
+            categories.forEach(cat => { stats[cat] = { completed: 0, total: 0 }; });
+
+            questions.forEach(q => {
+                const reqRank = ranks.find(r => r.id === q.minRank) || ranks[0];
+                const catPts = getCategoryPoints(q.category);
+                const reqCatPts = q.minCatPoints || 0;
+                const hasEnoughCatPoints = (catPts >= reqCatPts) || (score >= reqCatPts);
+
+                if (score >= reqRank.points && hasEnoughCatPoints) {
+                    stats["all"].total++;
+                    if (solvedQuestionIds.has(q.id)) stats["all"].completed++;
+
+                    if (stats[q.category]) {
+                        stats[q.category].total++;
+                        if (solvedQuestionIds.has(q.id)) stats[q.category].completed++;
+                    }
+                }
+
+                if (errorTracker[q.id] !== undefined && errorTracker[q.id] < 2) {
+                    stats["Fehler"].total++;
+                } else if (errorTracker[q.id] !== undefined && errorTracker[q.id] >= 2) {
+                    stats["Fehler"].completed++;
+                }
+            });
+            const activeErrors = Object.keys(errorTracker).filter(id => errorTracker[id] < 2).length;
+            stats["Fehler"].total = Object.keys(errorTracker).length;
+            stats["Fehler"].completed = stats["Fehler"].total - activeErrors;
+
+            return stats;
+        }
+
+        function getSubcategoryStats(catName, subName) {
+            let completed = 0;
+            let total = 0;
+
+            questions.forEach(q => {
+                if (q.category !== catName) return;
+                if (subName !== 'all' && q.subcategory !== subName) return;
+
+                const reqRank = ranks.find(r => r.id === q.minRank) || ranks[0];
+                const catPts = getCategoryPoints(q.category);
+                const reqCatPts = q.minCatPoints || 0;
+                const hasEnoughCatPoints = (catPts >= reqCatPts) || (score >= reqCatPts);
+
+                if (score >= reqRank.points && hasEnoughCatPoints) {
+                    total++;
+                    if (solvedQuestionIds.has(q.id)) {
+                        completed++;
+                    }
+                }
+            });
+
+            const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+            return { completed, total, percent };
+        }
+
+        function renderCategoryPanels() {
+            const container = document.getElementById('category-panels');
+            container.innerHTML = '';
+
+            const allCats = ["all", "Fehler", ...categories];
+            const categoryStats = getCategoryStats();
+
+            allCats.forEach(cat => {
+                const stat = categoryStats[cat] || { completed: 0, total: 0 };
+                const percent = stat.total > 0 ? Math.round((stat.completed / stat.total) * 100) : (cat === "Fehler" ? 100 : 0);
+                const displayName = cat === "all" ? "Alle Kategorien" : (cat === "Fehler" ? "⚠️ Fehler" : cat);
+                const chartBg = `conic-gradient(var(--primary-red) 0% ${percent}%, var(--card-border) ${percent}% 100%)`;
+
+                container.innerHTML += `
+                    <div class="cat-panel" onclick="selectMainCategory('${cat}')">
+                        <div class="cat-panel-title">${displayName}</div>
+                        <div class="chart-circle" style="background: ${chartBg}">
+                            <div class="chart-circle-inner">${percent}%</div>
+                        </div>
+                        <div class="cat-panel-count">${cat === "Fehler" ? `${stat.total - stat.completed} offene Fehler` : `${stat.completed} / ${stat.total} gelöst`}</div>
+                    </div>
+                `;
+            });
+        }
+
+        function selectMainCategory(catName) {
+            selectedCategory = catName;
+            
+            if (catName === "all" || catName === "Fehler") {
+                selectedSubcategory = "all";
+                startQuizSession();
+                return;
+            }
+
+            const catObj = categoriesObj.find(c => c.name === catName);
+            document.getElementById('subcat-view-title').innerText = `Kategorie: ${catName} – Unterkategorie wählen`;
+            
+            const subContainer = document.getElementById('subcategory-panels');
+            subContainer.innerHTML = '';
+
+            const allStat = getSubcategoryStats(catName, 'all');
+            const allChartBg = `conic-gradient(var(--primary-red) 0% ${allStat.percent}%, var(--card-border) ${allStat.percent}% 100%)`;
+
+            subContainer.innerHTML += `
+                <div class="subcat-panel" onclick="selectSubcategory('all')">
+                    <div class="subcat-panel-title">Alle Unterkategorien</div>
+                    <div class="chart-circle" style="background: ${allChartBg}">
+                        <div class="chart-circle-inner">${allStat.percent}%</div>
+                    </div>
+                    <div class="cat-panel-count">${allStat.completed} / ${allStat.total} gelöst</div>
+                </div>`;
+
+            if (catObj && catObj.subcats && catObj.subcats.length > 0) {
+                catObj.subcats.forEach(sub => {
+                    const subStat = getSubcategoryStats(catName, sub);
+                    const subChartBg = `conic-gradient(var(--primary-red) 0% ${subStat.percent}%, var(--card-border) ${subStat.percent}% 100%)`;
+
+                    subContainer.innerHTML += `
+                        <div class="subcat-panel" onclick="selectSubcategory('${sub}')">
+                            <div class="subcat-panel-title">${sub}</div>
+                            <div class="chart-circle" style="background: ${subChartBg}">
+                                <div class="chart-circle-inner">${subStat.percent}%</div>
+                            </div>
+                            <div class="cat-panel-count">${subStat.completed} / ${subStat.total} gelöst</div>
+                        </div>`;
+                });
+            }
+
+            document.getElementById('category-selection-view').classList.add('hidden');
+            document.getElementById('subcategory-selection-view').classList.remove('hidden');
+        }
+
+        function selectSubcategory(subName) {
+            selectedSubcategory = subName;
+            startQuizSession();
+        }
+
+        function startQuizSession() {
+            let availableQuestions = [];
+
+            if (selectedCategory === "Fehler") {
+                availableQuestions = questions.filter(q => errorTracker[q.id] !== undefined && errorTracker[q.id] < 2);
+            } else {
+                availableQuestions = questions.filter(q => {
+                    const reqRank = ranks.find(r => r.id === q.minRank) || ranks[0];
+                    const catPts = getCategoryPoints(q.category);
+                    const reqCatPts = q.minCatPoints || 0;
+                    const hasEnoughCatPoints = (catPts >= reqCatPts) || (score >= reqCatPts);
+
+                    const matchesCat = selectedCategory === 'all' || q.category === selectedCategory;
+                    const matchesSub = selectedSubcategory === 'all' || q.subcategory === selectedSubcategory;
+
+                    return score >= reqRank.points && hasEnoughCatPoints && matchesCat && matchesSub;
+                });
+            }
+
+            const unseen = availableQuestions.filter(q => !seenQuestionIds.has(q.id)).sort(() => Math.random() - 0.5);
+            const seen = availableQuestions.filter(q => seenQuestionIds.has(q.id)).sort(() => Math.random() - 0.5);
+
+            activeQueue = [...unseen, ...seen];
+            repeatQueue = [];
+
+            document.getElementById('category-selection-view').classList.add('hidden');
+            document.getElementById('subcategory-selection-view').classList.add('hidden');
+            document.getElementById('quiz-interactive-area').classList.remove('hidden');
+
+            loadNextQuestion();
+        }
+
+        function backToCategories() {
+            document.getElementById('subcategory-selection-view').classList.add('hidden');
+            document.getElementById('category-selection-view').classList.remove('hidden');
+        }
+
+        function backToSubcategories() {
+            document.getElementById('quiz-interactive-area').classList.add('hidden');
+            if (selectedCategory === 'all' || selectedCategory === 'Fehler') {
+                document.getElementById('category-selection-view').classList.remove('hidden');
+            } else {
+                document.getElementById('subcategory-selection-view').classList.remove('hidden');
+            }
+        }
+
+        function closeRankModal() { 
+            document.getElementById('rank-modal').classList.add('hidden'); 
+            renderCategoryPanels();
+            backToCategories();
+        }
+
+        /* FRAGEN ANZEIGEN & LÖSEN */
+        function loadNextQuestion() {
+            document.getElementById('explanation-container').classList.add('hidden');
+            document.getElementById('next-btn').classList.add('hidden');
+
+            if (activeQueue.length === 0) {
+                if (repeatQueue.length > 0) {
+                    activeQueue = [...repeatQueue];
+                    repeatQueue = [];
+                } else {
+                    document.getElementById('question-category').innerText = "Fertig!";
+                    document.getElementById('question-text').innerText = "Du hast alle Fragen dieser Session erfolgreich durchgearbeitet!";
+                    document.getElementById('interactive-container').innerHTML = `<button class="btn btn-primary" onclick="backToCategories()">Zurück zur Übersicht</button>`;
+                    return;
+                }
+            }
+
+            currentQuestion = activeQueue.shift();
+            const q = currentQuestion;
+
+            const isNew = !seenQuestionIds.has(q.id);
+            const isRepeat = repeatQueue.some(rq => rq.id === q.id);
+
+            let categoryHeaderHtml = q.category + (q.subcategory ? ` → ${q.subcategory}` : '');
+            if (isNew) {
+                categoryHeaderHtml += ` <span class="new-badge">🆕 NEU!</span>`;
+            } else if (isRepeat) {
+                categoryHeaderHtml += ` 🔄 (Wiederholung)`;
+            }
+
+            document.getElementById('question-category').innerHTML = categoryHeaderHtml;
+            document.getElementById('question-text').innerText = q.question;
+
+            if (isNew) {
+                seenQuestionIds.add(q.id);
+                saveProgress();
+            }
+
+            const container = document.getElementById('interactive-container');
+            container.innerHTML = '';
+
+            if (q.type === 'sc' || q.type === 'mc' || !q.type) {
+                const correctAnswers = q.correctAnswers || (q.correct !== undefined ? [q.correct] : [0]);
+                const isMultiple = correctAnswers.length > 1;
+
+                if (isMultiple) {
+                    container.innerHTML += `<p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">Wähle alle zutreffenden Antworten aus:</p>`;
+                }
+
+                q.options.forEach((opt, idx) => {
+                    const optDiv = document.createElement('div');
+                    optDiv.className = 'option-btn';
+                    
+                    if (isMultiple) {
+                        optDiv.innerHTML = `<input type="checkbox" id="opt-chk-${idx}" value="${idx}"> <label for="opt-chk-${idx}" style="cursor:pointer; flex:1;">${opt}</label>`;
+                        optDiv.onclick = (e) => {
+                            if (e.target.tagName !== 'INPUT') {
+                                const chk = optDiv.querySelector('input');
+                                chk.checked = !chk.checked;
+                            }
+                        };
+                    } else {
+                        optDiv.innerText = opt;
+                        optDiv.onclick = () => checkMCAnswer([idx], correctAnswers, q.explanation);
+                    }
+                    container.appendChild(optDiv);
+                });
+
+                if (isMultiple) {
+                    const submitBtn = document.createElement('button');
+                    submitBtn.className = 'btn btn-primary';
+                    submitBtn.style.marginTop = '15px';
+                    submitBtn.innerText = 'Antworten prüfen';
+                    submitBtn.onclick = () => {
+                        const selected = [];
+                        q.options.forEach((_, idx) => {
+                            const chk = document.getElementById(`opt-chk-${idx}`);
+                            if (chk && chk.checked) selected.push(idx);
+                        });
+                        checkMCAnswer(selected, correctAnswers, q.explanation);
+                    };
+                    container.appendChild(submitBtn);
+                }
+            }
+            else if (q.type === 'tf') {
+                q.options.forEach((opt, idx) => {
+                    const optDiv = document.createElement('div');
+                    optDiv.className = 'option-btn';
+                    optDiv.innerText = opt;
+                    optDiv.onclick = () => checkMCAnswer([idx], q.correctAnswers, q.explanation);
+                    container.appendChild(optDiv);
+                });
+            }
+            else if (q.type === 'text') {
+                container.innerHTML = `
+                    <div class="form-group">
+                        <input type="text" id="user-text-input" class="form-control" placeholder="Antwort hier eingeben..." style="font-size:16px;">
+                    </div>
+                    <button class="btn btn-primary" onclick="checkTextAnswer('${q.correctAnswer}', '${q.explanation || ''}')">Antwort prüfen</button>
+                `;
+            }
+            else if (q.type === 'sequence') {
+                let shuffled = [...q.items].sort(() => Math.random() - 0.5);
+                let listHtml = '<ul class="sort-list" id="sortable-list">';
+                shuffled.forEach((item) => {
+                    listHtml += `<li class="sort-item" draggable="true" data-text="${item}"><span>${item}</span> <i class="fa-solid fa-bars"></i></li>`;
+                });
+                listHtml += '</ul><button class="btn btn-primary" style="margin-top:15px;" onclick="checkSequenceAnswer(\'' + q.items.join('|||') + '\', \'' + (q.explanation || '') + '\')">Reihenfolge prüfen</button>';
+                container.innerHTML = listHtml;
+                initDragAndDrop();
+            }
+            else if (q.type === 'matching') {
+                selectedFirst = null;
+                matchingPairsState = [];
+                let lefts = q.pairs.map(p => p.left).sort(() => Math.random() - 0.5);
+                let rights = q.pairs.map(p => p.right).sort(() => Math.random() - 0.5);
+
+                let html = `
+                    <div class="matching-wrapper" id="matching-wrapper">
+                        <svg class="matching-lines-svg" id="matching-svg"></svg>
+                        <div class="matching-container">
+                            <div class="matching-column">`;
+                lefts.forEach(l => html += `<div class="match-card left-card" data-side="left" data-val="${l}" onclick="handleMatchCardClick(this)">${l}</div>`);
+                html += '</div><div class="matching-column">';
+                rights.forEach(r => html += `<div class="match-card right-card" data-side="right" data-val="${r}" onclick="handleMatchCardClick(this)">${r}</div>`);
+                html += `</div></div></div>
+                    <button class="btn btn-primary" id="check-match-btn" style="margin-top:15px;" onclick="checkMatchingAnswer(` + JSON.stringify(q.pairs).replace(/"/g, '&quot;') + `, '${q.explanation || ''}')">Verbindungen prüfen</button>`;
+                container.innerHTML = html;
+            }
+            else if (q.type === 'free_matching') {
+                selectedFirst = null;
+                matchingPairsState = [];
+
+                let allItems = [];
+                q.pairs.forEach(p => {
+                    allItems.push({ val: p.left });
+                    allItems.push({ val: p.right });
+                });
+                allItems.sort(() => Math.random() - 0.5);
+
+                let html = `<p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">Wählen Sie zwei zusammengehörige Begriffe aus, um sie zu verbinden:</p>
+                    <div class="matching-wrapper" id="free-matching-wrapper">
+                        <svg class="matching-lines-svg" id="free-matching-svg"></svg>
+                        <div class="free-match-grid">`;
+                
+                allItems.forEach((item, idx) => {
+                    html += `<div class="match-card free-card" id="free-card-${idx}" data-val="${item.val}" onclick="handleFreeMatchClick(this, '${item.val}')">${item.val}</div>`;
+                });
+
+                html += `</div></div>
+                    <button class="btn btn-primary" id="check-free-match-btn" style="margin-top:15px;" onclick="checkFreeMatchingAnswer(` + JSON.stringify(q.pairs).replace(/"/g, '&quot;') + `, '${q.explanation || ''}')">Verbindungen prüfen</button>`;
+                container.innerHTML = html;
+            }
+        }
+
+        function handleFreeMatchClick(el, val) {
+            if (el.classList.contains('paired')) {
+                matchingPairsState = matchingPairsState.filter(p => p.a !== val && p.b !== val);
+                document.querySelectorAll('.free-card').forEach(c => {
+                    const cVal = c.getAttribute('data-val');
+                    const isStillPaired = matchingPairsState.some(p => p.a === cVal || p.b === cVal);
+                    if (!isStillPaired) c.classList.remove('paired');
+                });
+                drawFreeMatchingLines();
+                return;
+            }
+
+            if (!selectedFirst) {
+                document.querySelectorAll('.free-card').forEach(c => c.classList.remove('selected'));
+                el.classList.add('selected');
+                selectedFirst = { val: val, el: el };
+            } else {
+                if (selectedFirst.el === el) {
+                    el.classList.remove('selected');
+                    selectedFirst = null;
+                } else {
+                    const pairA = selectedFirst.val;
+                    const pairB = val;
+
+                    matchingPairsState = matchingPairsState.filter(p => p.a !== pairA && p.b !== pairA && p.a !== pairB && p.b !== pairB);
+                    matchingPairsState.push({ a: pairA, b: pairB });
+
+                    selectedFirst.el.classList.remove('selected');
+                    selectedFirst.el.classList.add('paired');
+                    el.classList.add('paired');
+
+                    selectedFirst = null;
+                    drawFreeMatchingLines();
+                }
+            }
+        }
+
+        function drawFreeMatchingLines() {
+            const svg = document.getElementById('free-matching-svg');
+            const wrapper = document.getElementById('free-matching-wrapper');
+            if (!svg || !wrapper) return;
+
+            svg.innerHTML = '';
+            const wrapperRect = wrapper.getBoundingClientRect();
+
+            matchingPairsState.forEach(pair => {
+                const elA = document.querySelector(`.free-card[data-val="${pair.a}"]`);
+                const elB = document.querySelector(`.free-card[data-val="${pair.b}"]`);
+
+                if (elA && elB) {
+                    const rA = elA.getBoundingClientRect();
+                    const rB = elB.getBoundingClientRect();
+
+                    const x1 = rA.left + (rA.width / 2) - wrapperRect.left;
+                    const y1 = rA.top + (rA.height / 2) - wrapperRect.top;
+                    const x2 = rB.left + (rB.width / 2) - wrapperRect.left;
+                    const y2 = rB.top + (rB.height / 2) - wrapperRect.top;
+
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    line.setAttribute('x1', x1);
+                    line.setAttribute('y1', y1);
+                    line.setAttribute('x2', x2);
+                    line.setAttribute('y2', y2);
+                    svg.appendChild(line);
+                }
+            });
+        }
+
+        function checkFreeMatchingAnswer(pairs, exp) {
+            let isCorrect = matchingPairsState.length === pairs.length;
+
+            if (isCorrect) {
+                matchingPairsState.forEach(userPair => {
+                    const exists = pairs.some(p => 
+                        (p.left === userPair.a && p.right === userPair.b) || 
+                        (p.left === userPair.b && p.right === userPair.a)
+                    );
+                    if (!exists) isCorrect = false;
+                });
+            }
+
+            document.querySelectorAll('.free-card').forEach(c => c.onclick = null);
+            document.getElementById('check-free-match-btn').classList.add('hidden');
+
+            finishQuestion(isCorrect, exp);
+        }
+
+        function handleMatchCardClick(el) {
+            const side = el.getAttribute('data-side');
+            const val = el.getAttribute('data-val');
+
+            if (el.classList.contains('paired')) {
+                matchingPairsState = matchingPairsState.filter(p => p.left !== val && p.right !== val);
+                el.classList.remove('paired');
+                
+                document.querySelectorAll('.match-card').forEach(card => {
+                    const cVal = card.getAttribute('data-val');
+                    const isStillPaired = matchingPairsState.some(p => p.left === cVal || p.right === cVal);
+                    if (!isStillPaired) card.classList.remove('paired');
+                });
+                drawMatchingLines();
+                return;
+            }
+
+            if (!selectedFirst) {
+                document.querySelectorAll('.match-card').forEach(c => c.classList.remove('selected'));
+                el.classList.add('selected');
+                selectedFirst = { side: side, val: val, el: el };
+            } else {
+                if (selectedFirst.side === side) {
+                    selectedFirst.el.classList.remove('selected');
+                    el.classList.add('selected');
+                    selectedFirst = { side: side, val: val, el: el };
+                } else {
+                    const leftVal = side === 'left' ? val : selectedFirst.val;
+                    const rightVal = side === 'right' ? val : selectedFirst.val;
+
+                    matchingPairsState = matchingPairsState.filter(p => p.left !== leftVal && p.right !== rightVal);
+                    matchingPairsState.push({ left: leftVal, right: rightVal });
+
+                    selectedFirst.el.classList.remove('selected');
+                    selectedFirst.el.classList.add('paired');
+                    el.classList.add('paired');
+
+                    selectedFirst = null;
+                    drawMatchingLines();
+                }
+            }
+        }
+
+        function drawMatchingLines() {
+            const svg = document.getElementById('matching-svg');
+            const wrapper = document.getElementById('matching-wrapper');
+            if (!svg || !wrapper) return;
+
+            svg.innerHTML = '';
+            const wrapperRect = wrapper.getBoundingClientRect();
+
+            matchingPairsState.forEach(pair => {
+                const leftEl = document.querySelector(`.left-card[data-val="${pair.left}"]`);
+                const rightEl = document.querySelector(`.right-card[data-val="${pair.right}"]`);
+
+                if (leftEl && rightEl) {
+                    const rLeft = leftEl.getBoundingClientRect();
+                    const rRight = rightEl.getBoundingClientRect();
+
+                    const x1 = rLeft.right - wrapperRect.left;
+                    const y1 = rLeft.top + (rLeft.height / 2) - wrapperRect.top;
+                    const x2 = rRight.left - wrapperRect.left;
+                    const y2 = rRight.top + (rRight.height / 2) - wrapperRect.top;
+
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    line.setAttribute('x1', x1);
+                    line.setAttribute('y1', y1);
+                    line.setAttribute('x2', x2);
+                    line.setAttribute('y2', y2);
+                    svg.appendChild(line);
+                }
+            });
+        }
+
+        function finishQuestion(isCorrect, text) {
+            let pointsEarnedText = "";
+            let reward = 10;
+
+            if (isCorrect) {
+                if (errorTracker[currentQuestion.id] !== undefined) {
+                    errorTracker[currentQuestion.id]++;
+                    if (errorTracker[currentQuestion.id] >= 2) {
+                        delete errorTracker[currentQuestion.id];
+                    }
+                }
+
+                if (!solvedQuestionIds.has(currentQuestion.id)) {
+                    solvedQuestionIds.add(currentQuestion.id);
+                    const oldScore = score;
+                    score += reward;
+                    pointsEarnedText = ` (+${reward} XP)`;
+                    checkCategoryUnlocks(oldScore, score);
+                    updateStats(true);
+                } else {
+                    pointsEarnedText = " (Bereits gelöst – keine erneuten Punkte)";
+                }
+                saveProgress();
+                renderCategoryPanels();
+
+                const expContainer = document.getElementById('explanation-container');
+                const explanationText = text && text.trim() !== "" ? `<br>${text}` : "";
+                expContainer.innerHTML = `<strong>✅ Richtig!${pointsEarnedText}</strong>${explanationText}`;
+                expContainer.classList.remove('hidden');
+                document.getElementById('next-btn').classList.remove('hidden');
+
+            } else {
+                if (errorTracker[currentQuestion.id] === undefined) {
+                    errorTracker[currentQuestion.id] = 0;
+                }
+                saveProgress();
+
+                const isRepeat = repeatQueue.some(rq => rq.id === currentQuestion.id) || currentQuestion.isRepeatItem;
+
+                if (isRepeat) {
+                    document.getElementById('question-category').innerText = "Lektion beendet";
+                    document.getElementById('question-text').innerText = "Eine wiederholte Frage wurde erneut falsch beantwortet. Du kannst den Fehler unter 'Fehler' korrigieren.";
+                    document.getElementById('interactive-container').innerHTML = `<button class="btn btn-primary" onclick="backToCategories()">Zurück zur Übersicht</button>`;
+                    document.getElementById('explanation-container').classList.add('hidden');
+                    document.getElementById('next-btn').classList.add('hidden');
+                    return;
+                } else {
+                    currentQuestion.isRepeatItem = true;
+                    if (!repeatQueue.some(item => item.id === currentQuestion.id)) {
+                        repeatQueue.push(currentQuestion);
+                    }
+
+                    const expContainer = document.getElementById('explanation-container');
+                    const explanationText = text && text.trim() !== "" ? `<br>${text}` : "";
+                    expContainer.innerHTML = `<strong>❌ Falsch! (Wird am Ende einmal wiederholt)</strong>${explanationText}`;
+                    expContainer.classList.remove('hidden');
+                    document.getElementById('next-btn').classList.remove('hidden');
+                }
+            }
+        }
+
+        function checkMCAnswer(selected, correctAnswers, exp) {
+            const optionEls = document.querySelectorAll('.option-btn');
+            optionEls.forEach((el, idx) => {
+                el.onclick = null;
+                const chk = el.querySelector('input');
+                if(chk) chk.disabled = true;
+
+                const isTargetCorrect = correctAnswers.includes(idx);
+                const isSelected = selected.includes(idx);
+
+                if (isTargetCorrect) el.classList.add('correct');
+                if (isSelected && !isTargetCorrect) el.classList.add('wrong');
+            });
+
+            const isExactMatch = selected.length === correctAnswers.length && selected.every(val => correctAnswers.includes(val));
+            finishQuestion(isExactMatch, exp);
+        }
+
+        function checkTextAnswer(correctVal, exp) {
+            const input = document.getElementById('user-text-input');
+            const sanitize = (str) => str.replace(/[\s\.]/g, '').toLowerCase();
+
+            const userClean = sanitize(input.value);
+            const correctClean = sanitize(correctVal);
+
+            input.disabled = true;
+            finishQuestion(userClean === correctClean, (exp ? exp + ' ' : '') + `(Richtige Antwort: ${correctVal})`);
+        }
+
+        function checkSequenceAnswer(correctOrderStr, exp) {
+            const items = document.querySelectorAll('#sortable-list li');
+            const userOrder = Array.from(items).map(li => li.getAttribute('data-text'));
+            const correctOrder = correctOrderStr.split('|||');
+            const isCorrect = JSON.stringify(userOrder) === JSON.stringify(correctOrder);
+            finishQuestion(isCorrect, exp);
+        }
+
+        function checkMatchingAnswer(pairs, exp) {
+            let isCorrect = matchingPairsState.length === pairs.length;
+            if (isCorrect) {
+                matchingPairsState.forEach(p => {
+                    const targetPair = pairs.find(original => original.left === p.left);
+                    if (!targetPair || targetPair.right !== p.right) isCorrect = false;
+                });
+            }
+            
+            document.querySelectorAll('.match-card').forEach(c => c.onclick = null);
+            document.getElementById('check-match-btn').classList.add('hidden');
+            
+            finishQuestion(isCorrect, exp);
+        }
+
+        function initDragAndDrop() {
+            const list = document.getElementById('sortable-list');
+            let dragEl = null;
+
+            list.addEventListener('dragstart', e => {
+                dragEl = e.target;
+                e.dataTransfer.effectAllowed = 'move';
+            });
+
+            list.addEventListener('dragover', e => {
+                e.preventDefault();
+                const target = e.target.closest('li');
+                if (target && target !== dragEl) {
+                    const rect = target.getBoundingClientRect();
+                    const next = (e.clientY - rect.top) / (rect.bottom - rect.top) > 0.5;
+                    list.insertBefore(dragEl, next ? target.nextSibling : target);
+                }
+            });
+        }
+
+        /* ADMIN FORM HELPERS */
+        function updateFormFields(data = null) {
+            const type = document.getElementById('form-type').value;
+            const container = document.getElementById('type-fields-container');
+            container.innerHTML = '';
+
+            if (type === 'mc' || type === 'sc') {
+                container.innerHTML = `
+                    <div class="form-group">
+                        <label>Antwortmöglichkeiten (Häkchen bei richtig):</label>
+                        <div id="mc-options-list"></div>
+                        <button type="button" class="btn btn-secondary" onclick="addMCOptionRow()" style="font-size:12px; padding:6px 12px; margin-top:5px;">+ Option hinzufügen</button>
+                    </div>`;
+
+                if (data && data.options) {
+                    const correctIndices = data.correctAnswers || (data.correct !== undefined ? [data.correct] : [0]);
+                    data.options.forEach((optText, i) => {
+                        addMCOptionRow(optText, correctIndices.includes(i));
+                    });
+                } else {
+                    addMCOptionRow('', true);
+                    addMCOptionRow('', false);
+                    addMCOptionRow('', false);
+                }
+            } else if (type === 'tf') {
+                container.innerHTML = `
+                    <div class="form-group">
+                        <label>Richtige Antwort auswählen:</label>
+                        <select id="form-tf-ans" class="form-control">
+                            <option value="0">Richtig</option>
+                            <option value="1">Falsch</option>
+                        </select>
+                    </div>`;
+                if (data && data.correctAnswers) {
+                    document.getElementById('form-tf-ans').value = data.correctAnswers[0];
+                }
+            } else if (type === 'text') {
+                const val = data && data.correctAnswer ? data.correctAnswer : '';
+                container.innerHTML = `<div class="form-group"><label>Exakte Richtige Antwort</label><input type="text" id="form-text-ans" class="form-control" value="${val}" required></div>`;
+            } else if (type === 'sequence') {
+                const val = data && data.items ? data.items.join(', ') : '';
+                container.innerHTML = `<div class="form-group"><label>Elemente in RICHTIGER Reihenfolge (Kommagetrennt)</label><input type="text" id="form-seq-items" class="form-control" value="${val}" placeholder="Schritt 1, Schritt 2, Schritt 3" required></div>`;
+            } else if (type === 'matching' || type === 'free_matching') {
+                const val = data && data.pairs ? data.pairs.map(p => `${p.left}=${p.right}`).join(', ') : '';
+                container.innerHTML = `<div class="form-group"><label>Zusammengehörige Paare eingeben (Format: A=1, B=2, C=3)</label><input type="text" id="form-match-items" class="form-control" value="${val}" placeholder="Saugkorb=Filter, Verteiler=Teilen" required></div>`;
+            }
+        }
+
+        function addMCOptionRow(text = '', isCorrect = false) {
+            const list = document.getElementById('mc-options-list');
+            if (!list) return;
+
+            const row = document.createElement('div');
+            row.className = 'mc-option-row';
+            row.innerHTML = `
+                <input type="text" class="mc-option-input form-control" value="${text}" placeholder="Option / Antwort..." required>
+                <label><input type="checkbox" class="mc-option-correct" ${isCorrect ? 'checked' : ''}> Richtig</label>
+                <button type="button" class="btn btn-secondary" onclick="this.parentElement.remove()" style="padding:6px 10px; font-size:12px;"><i class="fa-solid fa-xmark"></i></button>
+            `;
+            list.appendChild(row);
+        }
+
+        function editQuestion(id) {
+            const q = questions.find(item => item.id === id);
+            if (!q) return;
+
+            document.getElementById('edit-question-id').value = q.id;
+            document.getElementById('form-heading').innerText = "Frage bearbeiten";
+            document.getElementById('save-btn').innerText = "Änderungen Speichern";
+            document.getElementById('cancel-edit-btn').classList.remove('hidden');
+
+            document.getElementById('form-type').value = q.type || 'sc';
+            document.getElementById('form-category').value = q.category;
+            updateSubcatDropdown();
+            document.getElementById('form-subcategory').value = q.subcategory || '';
+            document.getElementById('form-rank').value = q.minRank;
+            document.getElementById('form-cat-points').value = q.minCatPoints || 0;
+            document.getElementById('form-question').value = q.question;
+            document.getElementById('form-explanation').value = q.explanation || '';
+
+            updateFormFields(q);
+        }
+
+        function resetQuestionForm() {
+            document.getElementById('edit-question-id').value = '';
+            document.getElementById('form-heading').innerText = "Neue Frage hinzufügen";
+            document.getElementById('save-btn').innerText = "Frage Speichern";
+            document.getElementById('cancel-edit-btn').classList.add('hidden');
+            document.getElementById('question-form').reset();
+            document.getElementById('form-cat-points').value = "0";
+            updateFormFields();
+        }
+
+        function saveCustomQuestion(e) {
+            e.preventDefault();
+            const editId = document.getElementById('edit-question-id').value;
+            const type = document.getElementById('form-type').value;
+
+            let questionObj = {
+                id: editId ? parseInt(editId, 10) : Date.now(),
+                type: type,
+                category: document.getElementById('form-category').value,
+                subcategory: document.getElementById('form-subcategory').value,
+                minRank: parseInt(document.getElementById('form-rank').value, 10),
+                minCatPoints: parseInt(document.getElementById('form-cat-points').value, 10) || 0,
+                question: document.getElementById('form-question').value,
+                explanation: document.getElementById('form-explanation').value
+            };
+
+            if (type === 'mc' || type === 'sc') {
+                const rows = document.querySelectorAll('.mc-option-row');
+                const options = [];
+                const correctAnswers = [];
+
+                rows.forEach((row, idx) => {
+                    const text = row.querySelector('.mc-option-input').value.trim();
+                    const isChk = row.querySelector('.mc-option-correct').checked;
+                    if (text !== '') {
+                        options.push(text);
+                        if (isChk) correctAnswers.push(idx);
+                    }
+                });
+
+                if (options.length < 2) return alert("Bitte mindestens 2 Optionen erstellen!");
+                if (correctAnswers.length === 0) return alert("Bitte mindestens 1 Option als richtig markieren!");
+
+                questionObj.options = options;
+                questionObj.correctAnswers = correctAnswers;
+            } 
+            else if (type === 'tf') {
+                questionObj.options = ["Richtig", "Falsch"];
+                questionObj.correctAnswers = [parseInt(document.getElementById('form-tf-ans').value, 10)];
+            }
+            else if (type === 'text') {
+                questionObj.correctAnswer = document.getElementById('form-text-ans').value.trim();
+            } 
+            else if (type === 'sequence') {
+                questionObj.items = document.getElementById('form-seq-items').value.split(',').map(s => s.trim());
+            } 
+            else if (type === 'matching' || type === 'free_matching') {
+                questionObj.pairs = document.getElementById('form-match-items').value.split(',').map(p => {
+                    const parts = p.split('=');
+                    return { left: parts[0] ? parts[0].trim() : '', right: parts[1] ? parts[1].trim() : '' };
+                });
+            }
+
+            let custom = JSON.parse(localStorage.getItem('fw_custom_questions')) || [];
+
+            if (editId) {
+                const isDefault = defaultQuestions.some(dq => dq.id === questionObj.id);
+                if (isDefault) {
+                    const idx = defaultQuestions.findIndex(dq => dq.id === questionObj.id);
+                    if (idx !== -1) defaultQuestions[idx] = questionObj;
+                }
+
+                const cIdx = custom.findIndex(cq => cq.id === questionObj.id);
+                if (cIdx !== -1) {
+                    custom[cIdx] = questionObj;
+                } else if (!isDefault) {
+                    custom.push(questionObj);
+                }
+            } else {
+                custom.push(questionObj);
+            }
+
+            localStorage.setItem('fw_custom_questions', JSON.stringify(custom));
+
+            resetQuestionForm();
+            alert("Frage erfolgreich gespeichert!");
+            loadPool();
+            renderCategoryPanels();
+        }
+
+        /* ADMIN: SORTIERTE ANZEIGE NACH HAUPT- UND UNTERKATEGORIE */
+        function renderCustomList() {
+            const list = document.getElementById('custom-questions-list');
+            list.innerHTML = '';
+
+            categoriesObj.forEach(cat => {
+                const catQuestions = questions.filter(q => q.category === cat.name);
+                if (catQuestions.length === 0) return;
+
+                const catDiv = document.createElement('div');
+                catDiv.className = 'admin-cat-group';
+                catDiv.innerHTML = `<h3 style="color:var(--primary-red); margin-bottom:10px;"><i class="fa-solid fa-folder"></i> ${cat.name}</h3>`;
+
+                const subList = [...cat.subcats, "Unkategorisiert / Allgemeine Fragen"];
+
+                subList.forEach(sub => {
+                    const subQuestions = catQuestions.filter(q => {
+                        if (sub === "Unkategorisiert / Allgemeine Fragen") return !q.subcategory;
+                        return q.subcategory === sub;
+                    });
+
+                    if (subQuestions.length > 0) {
+                        const subDiv = document.createElement('div');
+                        subDiv.className = 'admin-subcat-group';
+                        subDiv.innerHTML = `<h4 style="color:#fff; font-size:14px; margin-bottom:8px;"><i class="fa-solid fa-folder-tree"></i> ${sub}</h4>`;
+
+                        subQuestions.forEach(q => {
+                            subDiv.innerHTML += `
+                                <div class="item-card" style="margin-bottom:6px;">
+                                    <div>
+                                        <strong>[${(q.type || 'sc').toUpperCase()}] ${q.question}</strong>
+                                        <br><small style="color:var(--text-muted);">Erfordert: ab ${q.minCatPoints || 0} Kat-XP</small>
+                                    </div>
+                                    <div style="display:flex; gap:6px;">
+                                        <button class="btn btn-secondary" onclick="editQuestion(${q.id})" style="padding:4px 8px; font-size:12px;"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="btn btn-secondary" onclick="deleteQuestion(${q.id})" style="padding:4px 8px; font-size:12px;"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </div>`;
+                        });
+                        catDiv.appendChild(subDiv);
+                    }
+                });
+                list.appendChild(catDiv);
+            });
+        }
+
+        function deleteQuestion(id) {
+            if (!confirm("Möchten Sie diese Frage wirklich löschen?")) return;
+
+            let stored = localStorage.getItem('fw_custom_questions');
+            if(stored) {
+                let custom = JSON.parse(stored);
+                custom = custom.filter(q => q.id !== id);
+                localStorage.setItem('fw_custom_questions', JSON.stringify(custom));
+            }
+
+            const defIdx = defaultQuestions.findIndex(q => q.id === id);
+            if (defIdx !== -1) defaultQuestions.splice(defIdx, 1);
+
+            loadPool();
+            renderCategoryPanels();
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feuerwehr LernApp - FwDV 1 & 3</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --card-border: #334155;
+            --primary-red: #e11d48;
+            --primary-red-hover: #be123c;
+            --accent-yellow: #f59e0b;
+            --accent-green: #10b981;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); min-height: 100vh; padding-bottom: 40px; }
+
+        header {
+            background-color: #0b1120;
+            border-bottom: 1px solid var(--card-border);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 12px; }
+        .logo-icon {
+            background: linear-gradient(135deg, #f43f5e, #be123c);
+            width: 42px; height: 42px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; color: white;
+        }
+        .logo-text h1 { font-size: 18px; font-weight: 800; }
+        .logo-text h1 span { background: #ffe4e6; color: #e11d48; padding: 2px 6px; border-radius: 4px; font-size: 11px; margin-left: 4px; }
+        .logo-text p { font-size: 12px; color: var(--text-muted); }
+
+        .header-actions { display: flex; align-items: center; gap: 15px; }
+        .user-badge {
+            background-color: var(--card-bg); border: 1px solid var(--card-border);
+            padding: 6px 14px; border-radius: 20px; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600;
+        }
+        .user-badge i { color: var(--accent-yellow); }
+
+        .icon-btn {
+            background-color: var(--card-bg); border: 1px solid var(--card-border);
+            color: var(--text-main); width: 38px; height: 38px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s;
+        }
+        .icon-btn:hover { background-color: var(--card-border); color: var(--primary-red); }
+
+        .container { max-width: 1050px; margin: 30px auto; padding: 0 20px; }
+
+        .rank-card {
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid var(--card-border); border-radius: 16px; padding: 24px; margin-bottom: 30px;
+        }
+        .rank-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .rank-title-group small { text-transform: uppercase; font-size: 11px; font-weight: 700; color: var(--text-muted); }
+        .rank-title-group h2 { font-size: 28px; font-weight: 800; margin-top: 2px; color: #ffffff; }
+        .next-rank-badge { background: rgba(225, 29, 72, 0.1); border: 1px solid rgba(225, 29, 72, 0.3); color: #fda4af; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; }
+
+        .progress-info { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); margin-bottom: 8px; font-weight: 600; }
+        .progress-bar-container { width: 100%; height: 10px; background-color: #090d16; border-radius: 5px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #e11d48, #f59e0b); border-radius: 5px; transition: width 0.4s ease; }
+
+        /* KATEGORIEN GRID */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .cat-panel {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cat-panel:hover { transform: translateY(-3px); border-color: #475569; }
+        .cat-panel-title { font-weight: 700; font-size: 14px; margin-bottom: 10px; color: var(--text-main); }
+        .cat-panel-count { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+
+        .chart-circle { width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: relative; }
+        .chart-circle-inner { width: 44px; height: 44px; background: var(--card-bg); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 700; font-size: 12px; color: var(--text-main); }
+
+        /* UNTERKATEGORIEN AUSWAHL VIEW */
+        .subcat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .subcat-panel {
+            background-color: #0f172a;
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: 600;
         }
         .subcat-panel:hover { border-color: var(--primary-red); background-color: rgba(225, 29, 72, 0.05); }
 
